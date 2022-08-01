@@ -1,0 +1,28 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+const api = "https://jsonplaceholder.typicode.com/posts";
+
+type Post = [
+  {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+  }
+];
+ const [data, setPosts] = useState<Post>([
+    {
+      userId: 1,
+      id: 2,
+      title: "a",
+      body: "a",
+    },
+  ]);
+  const Api = async () => {
+    const { data } = await axios.get(api);
+    setPosts(data.slice(0, 2));
+  };
+  useEffect(() => {
+    Api();
+    console.log("hajku");
+  }, []);
