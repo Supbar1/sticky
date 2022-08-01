@@ -1,3 +1,3 @@
 export default function Comments() {
-  return <div>Comments</div>;
+  return <div>comments</div>;
 }

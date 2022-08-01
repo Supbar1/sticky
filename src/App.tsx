@@ -4,12 +4,13 @@ import NotFound from "./components/NotFound";
 import NewLogin from "./components/Login";
 import Comments from "./components/Comments";
 import Profiles from "./components/Profiles";
-import Main from "./components/Main";
-import { NavBar } from "./components/navbar";
+import Main from "./components/main/Main";
+
+import { Navbar } from "./components/navbar/Navbar";
 const App = () => {
   return (
     <React.Fragment>
-      <NavBar />
+      <Navbar />
       <Routes>
         <Route path="/login" element={<NewLogin />} />
         <Route path="/comments" element={<Comments />} />

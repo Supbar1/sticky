@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "../style.css";
+import "../../style.css";
+// import "./nav.css";
 
-export function NavBar() {
+export function Navbar() {
   const [navbarLinks, setNavbarLins] = useState("navbar-links");
 
   function navbarToggle() {
@@ -11,10 +12,10 @@ export function NavBar() {
       : setNavbarLins("navbar-links");
   }
   return (
-    <div className="nav ">
+    <div className="nav">
       <img
-        src="https://play-lh.googleusercontent.com/ahJtMe0vfOlAu1XJVQ6rcaGrQBgtrEZQefHy7SXB7jpijKhu1Kkox90XDuH8RmcBOXNn"
-        alt="Start-up Company"
+        src="https://dictionary.cambridge.org/pl/images/thumb/stick_noun_002_35886.jpg?version=5.0.247"
+        alt="sorry for stick"
       />
 
       <div className="toggle-button " onClick={navbarToggle}>
