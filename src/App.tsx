@@ -3,11 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import NotFound from "./components/NotFound";
 import NewLogin from "./components/Login";
-import Community from "./components/Community";
+import Community from "./components/community/Community";
 import Products from "./components/Products";
 import Main from "./components/main/Main";
 import Navbar from "./components/navbar/Navbar";
 import "./style.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Scroll = styled.div`
   height: 100vh;
@@ -28,6 +30,7 @@ const Scroll = styled.div`
 const App = () => {
   return (
     <React.Fragment>
+      <ToastContainer />
       <Scroll>
         <Navbar />
         <Routes>

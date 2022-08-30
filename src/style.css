@@ -6,10 +6,10 @@
 
   --clr-primary-400: hsl(228, 39%, 23%);
 
-  --clr-accent-100: hsl(13, 100%, 96%);
-  --clr-accent-200: hsl(12, 93%, 86%);
+  --clr-accent-100: #ffefeb;
+  --clr-accent-200: #fdc7ba;
   --clr-accent-300: hsl(12, 88%, 75%);
-  --clr-accent-400: hsl(12, 88%, 59%);
+  --clr-accent-400: #f25f3a;
   --clr-accent-500: hsl(12, 60%, 45%);
 
   --ff-primary: "Be Vietnam Pro", sans-serif;
@@ -192,6 +192,9 @@ picture {
 .padding-block-400 {
   padding-block: var(--size-400);
 }
+.padding-block-500 {
+  padding-block: var(--size-500);
+}
 .padding-block-700 {
   padding-block: var(--size-700);
 }
@@ -230,6 +233,14 @@ picture {
 h1.margin {
   margin: 0px;
   margin-bottom: 1rem;
+}
+.to-left {
+  padding: 0.5rem 1rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+  text-align: left;
+  border: 1px solid black;
 }
 
 /*----------- MEDIA ------------------*/
@@ -282,4 +293,12 @@ h1.margin {
 .buy-button:hover,
 .buy-button:focus-visible {
   background-color: var(--clr-accent-300);
+}
+
+.able {
+  display: flex;
+}
+.disable {
+  display: none;
+  border: 1px solid red;
 }
