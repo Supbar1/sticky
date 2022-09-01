@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import http from "../../services/httpService";
 import config from "../../services/config.json";
-import Topics from "./Topics";
-import Comments from "./Comments";
 import ActualTopic from "./ActualTopic";
+import Comments from "./Comments";
+import Topics from "./Topics";
 import "../../style.css";
 
 const CommunitySection = styled.div`
@@ -13,16 +13,30 @@ const CommunitySection = styled.div`
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
+  @media (max-width: 57rem) {
+    flex-direction: column;
+    font-size: var(fs--300);
+    i {
+      font-size: 2rem;
+    }
+  }
 `;
 
 const CommentsSection = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
+  @media (max-width: 57rem) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 `;
 
 export default function GetApiComments() {
-  const [photos, setPhotos] = useState();
   const [topics, setTopics] = useState([]);
   const [comments, setComments] = useState();
 
@@ -32,11 +46,6 @@ export default function GetApiComments() {
   const ApiTopics = async () => {
     const { data: topics } = await http.get(config.apiTopics);
     setTopics(topics.slice(0, numberOfTopics));
-  };
-
-  const ApiPhotos = async () => {
-    const { data: photos } = await http.get(config.apiPhotos);
-    setPhotos(photos.slice(0, numberOfComments));
   };
 
   const ApiComments = async () => {
@@ -50,7 +59,6 @@ export default function GetApiComments() {
   };
   useEffect(() => {
     ApiTopics();
-    ApiPhotos();
     ApiComments();
   }, []);
 
@@ -59,12 +67,13 @@ export default function GetApiComments() {
       postId: 5,
       id: 26,
       name: "text",
-      email: "user name",
-      body: "user comment",
+      email: "User_Name",
+      body: "qui harum consequatur fugiat et eligendi perferendis at molestiae commodi ducimus doloremque asperiores numquam qui ut sit dignissimos reprehenderit tempore",
     };
     const newPosts = [...actualComments, obj];
     setActualComments(newPosts);
   };
+
   const handleUpdate = async (comment) => {
     comment.body = comment.body + " Updated";
     const commentsFromState = [...comments];
@@ -72,6 +81,7 @@ export default function GetApiComments() {
     setComments(commentsFromState);
     await http.put(config.apiComments + "/" + comment.id, comment);
   };
+
   const handleDelete = async (comment) => {
     const orginalComments = comments;
     const filteredComments = comments.filter((p) => p.id !== comment.id);
@@ -80,31 +90,30 @@ export default function GetApiComments() {
       (p) => p.id !== comment.id
     );
     setActualComments(filteredActualComments);
-    const orginalPhotos = photos;
-    const filteredPhotos = photos.filter((p) => p.id !== comment.id);
-    setPhotos(filteredPhotos);
+
     try {
       await http.delete(config.apiComments + "/" + comment.id);
-      await http.delete(config.apiPhotos + "/" + comment.id);
     } catch (er) {
       if (er.response && er.response.status === 404)
         alert("This post has already been deleted");
       setActualComments(orginalComments);
-      setPhotos(orginalPhotos);
     }
   };
+  
   const [actualTopic, setActualTopic] = useState([]);
   const [actualComments, setActualComments] = useState();
+  const [topicPicked, setTopicPicked] = useState(false);
 
   function onPageChange(topic, index) {
     setActualComments(comments.slice(index * 5, index * 5 + 5));
     setActualTopic(topic.title);
+    setTopicPicked(true);
   }
   return (
     <CommunitySection>
       <Topics topics={topics} onPageChange={onPageChange} />
       <CommentsSection className="fs-body">
-        <ActualTopic actualTopic={actualTopic} />
+        <ActualTopic actualTopic={actualTopic} topicPicked={topicPicked} />
         <Comments
           actualComments={actualComments}
           handleUpdate={handleUpdate}

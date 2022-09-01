@@ -44,7 +44,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <Link to="/comments">
+                <Link to="/community">
                   <span>Community</span>
                 </Link>
               </li>

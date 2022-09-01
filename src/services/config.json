@@ -1,6 +1,5 @@
 {
   "apiPosts": "https://jsonplaceholder.typicode.com/posts",
   "apiTopics": "https://jsonplaceholder.typicode.com/todos",
-  "apiPhotos": "https://jsonplaceholder.typicode.com/photos",
   "apiComments": "https://jsonplaceholder.typicode.com/comments"
 }

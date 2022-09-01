@@ -2,18 +2,24 @@ import styled from "styled-components";
 import "../../style.css";
 
 const Title = styled.div`
-  height: 50px;
   display: flex;
   align-items: center;
-  justify-content: left;
-  text-align: left;
-  margin-left: 10px;
+  justify-content: center;
+  text-align: center;
+
+  @media (max-width: 57rem) {
+    width: 100%;
+    background-color: var(--clr-accent-200);
+    color: var(--clr-neutral-900);
+  }
 `;
 
-export default function ActualTopic({ actualTopic }) {
+export default function ActualTopic({ actualTopic, topicPicked }) {
   return (
-    <Title className="fs-secondary-heading fw-bold padding-block-900">
-      {actualTopic}
+    <Title className="margin">
+      <div className="fs-secondary-heading fw-bold">
+        {topicPicked && actualTopic}
+      </div>
     </Title>
   );
 }

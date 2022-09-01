@@ -21,7 +21,8 @@
   --fw-semi-bold: 500;
   --fw-bold: 700;
 
-  --fs-400: 0.875rem;
+  --fs-300: 0.8rem;
+  --fs-400: 1rem;
   --fs-500: 1.1rem;
   --fs-600: 1.8rem;
   --fs-700: 2.2rem;
@@ -79,7 +80,11 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 /* Make images easier to work with */
-
+p {
+  word-spacing: 1.5px;
+  letter-spacing: 1px;
+  transform: scale(0.9, 1.1);
+}
 img,
 picture {
   max-width: 100%;
@@ -107,11 +112,14 @@ picture {
 .text-primary-400 {
   color: var(--clr-primary-400);
 }
-.text-accent-400 {
-  color: var(--clr-accent-400);
-}
 .text-accent-100 {
   color: var(--clr-accent-100);
+}
+.text-accent-200 {
+  color: var(--clr-accent-200);
+}
+.text-accent-400 {
+  color: var(--clr-accent-400);
 }
 .text-neutral-100 {
   color: var(--clr-neutral-100);
@@ -237,7 +245,6 @@ h1.margin {
 .to-left {
   padding: 0.5rem 1rem;
   display: flex;
-  /* align-items: center; */
   justify-content: flex-start;
   text-align: left;
   border: 1px solid black;
@@ -250,11 +257,11 @@ h1.margin {
     font-size: var(--fs-300);
   }
   .fs-primary-heading {
-    font-size: var(--fs-800);
+    font-size: var(--fs-900);
     line-height: 1.2;
   }
   .fs-secondary-heading {
-    font-size: var(--fs-600);
+    font-size: var(--fs-800);
   }
   .even-columns {
     grid-auto-flow: row;
@@ -265,6 +272,12 @@ h1.margin {
   }
   .padding-block-900 {
     padding-block: var(--size-300);
+  }
+  .margin {
+    margin: 1rem;
+  }
+  .small-margin {
+    margin: 0.5rem;
   }
 }
 
