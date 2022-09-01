@@ -1,4 +1,4 @@
-function NewLogin() {
+export default function NewLogin() {
   return (
     <>
       <fieldset>
@@ -13,4 +13,3 @@ function NewLogin() {
     </>
   );
 }
-export default NewLogin;
