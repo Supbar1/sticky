@@ -41,10 +41,9 @@ export default function Main() {
           <Section2 />
         </BigScreen>
       </Sections>
-
       <Carousel />
+        <Footer />
 
-      <Footer />
     </>
   );
 }
