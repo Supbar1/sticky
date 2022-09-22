@@ -1,16 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import NotFound from "./components/NotFound";
-// import Login from "./components/login/Login";
+import NotFound from "./components/navbar/NotFound";
 import Community from "./components/community/Community";
-import Products from "./components/Products";
+import Products from "./components/products/Products";
 import Main from "./components/main/Main";
 import Navbar from "./components/navbar/Navbar";
 import "./style.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Login from "./login/Login";
+import Login from "./components/login/Login";
+import ShoppingCartProvider from "./components/products/ShopContext";
+import Footer from "./components/main/Footer";
 
 const Scroll = styled.div`
   height: 100vh;
@@ -31,18 +32,20 @@ const Scroll = styled.div`
 const App = () => {
   return (
     <React.Fragment>
-      <ToastContainer />
-      <Scroll>
-        <Navbar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/" element={<Main />} />
-          <Route path="*" element={<NotFound />} />
-         
-        </Routes>
-      </Scroll>
+      <ShoppingCartProvider>
+        <ToastContainer />
+        <Scroll>
+          <Navbar />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/" element={<Main />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </Scroll>
+      </ShoppingCartProvider>
     </React.Fragment>
   );
 };

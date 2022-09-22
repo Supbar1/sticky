@@ -2,6 +2,37 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "../../style.css";
 
+const EvenColumns = styled.div`
+  font-size: var(--fs-body);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  @media (max-width: 60em) {
+    grid-auto-flow: row;
+    grid-auto-columns: 1fr;
+  }
+`;
+
+const Center = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  margin: 2rem;
+  a {
+    text-decoration: none;
+    color: var(--clr-accent-400);
+  }
+  a :hover {
+    color: var(--clr-neutral-100);
+  }
+  @media (max-width: 35em) {
+    margin: 1rem;
+  }
+`;
+
 const Icons = styled.ul`
   display: flex;
   flex-direction: row;
@@ -23,23 +54,35 @@ const FooterInput = styled.div`
     height: 2em;
   }
 `;
+const Button = styled.button`
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  line-height: 1;
+  border-radius: 100vmax;
+  padding: 1.25em 2.5em;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-button);
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-accent-400);
+  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
+`;
 export default function Footer() {
   return (
-    <footer className="bg-neutral-900 text-neutral-100">
-      <div className="even-columns">
-        <div className="center">
+    <footer>
+      <EvenColumns>
+        <Center>
           <img
             src="https://thumbs.dreamstime.com/b/cinnamon-sticks-isolated-black-background-food-photo-114308714.jpg"
             alt="sorry for stick"
-            className=""
           />
-        </div>
-        <div className="center">
-          <ul role="list" className="">
+        </Center>
+        <Center>
+          <ul role="list">
             <li>
-              <a href="#">
+              <Link to="/">
                 <span>Main</span>
-              </a>
+              </Link>
             </li>
 
             <li>
@@ -47,7 +90,6 @@ export default function Footer() {
                 <span>Community</span>
               </Link>
             </li>
-
             <li>
               <Link to="/products">
                 <span>Products</span>
@@ -59,8 +101,8 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
-        <div className="center padding-block-400 ">
+        </Center>
+        <Center>
           <Icons role="list">
             <li>
               <a href="https://www.facebook.com/">
@@ -88,17 +130,17 @@ export default function Footer() {
               </a>
             </li>
           </Icons>
-        </div>
-        <div className="center">
+        </Center>
+        <Center>
           <form action="not-found">
             <FooterInput>
-              <input type="email" className="input" />
-              <button className="button go">Go</button>
+              <input type="email" />
+              <Button>Go</Button>
             </FooterInput>
             <p>Copyright 2022. All Rights Reserved</p>
           </form>
-        </div>
-      </div>
+        </Center>
+      </EvenColumns>
     </footer>
   );
 }

@@ -1,15 +1,16 @@
+import "../../style.css";
 import { useState } from "react";
 import styled from "styled-components";
-import "./navbar.css";
-import "../../style.css";
 import PageTitle from "./PageTitle";
-import NavbarLinuks from "./Links";
+import NavbarLinks from "./NavbarLinks";
 
 const Navigation = styled.div`
   display: flex;
   align-items: center;
   background-color: var(--clr-neutral-100);
-  @media (max-width: 57em) {
+  img {
+  }
+  @media (max-width: 65em) {
     flex-direction: column;
     img {
       display: none;
@@ -17,20 +18,65 @@ const Navigation = styled.div`
   }
 `;
 
+const Links = styled.div`
+  display: flex;
+  div {
+    list-style: none;
+  }
+  div a {
+    display: block;
+    text-decoration: none;
+    color: var(--clr-accent-400);
+    padding: 1rem;
+  }
+  div:hover {
+    background-color: var(--clr-accent-100);
+  }
+  @media (max-width: 65em) {
+    display: none;
+    width: 100%;
+  }
+  `;
+
+const LinksActive = styled.div`
+display: flex;
+div {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+div a {
+  display: block;
+  text-decoration: none;
+  color: var(--clr-accent-400);
+  padding: 1rem;
+}
+div:hover {
+  background-color: var(--clr-accent-100);
+}
+@media (max-width: 65em) {
+  flex-direction: column;
+}
+`;
+
 export default function Navbar() {
-  const [navbarLinks, setNavbarLinks] = useState("navbar-links");
+  const [openMenu, setOpenMenu] = useState(false);
 
   function navbarToggle() {
-    navbarLinks === "navbar-links"
-      ? setNavbarLinks("navbar-links active")
-      : setNavbarLinks("navbar-links");
+    openMenu ? setOpenMenu(false) : setOpenMenu(true);
   }
   return (
     <Navigation>
       <PageTitle click={navbarToggle} />
-      <div className={navbarLinks}>
-        <NavbarLinuks />
-      </div>
+      {openMenu ? (
+        <LinksActive>
+          <NavbarLinks />
+        </LinksActive>
+      ) : (
+        <Links>
+          <NavbarLinks />
+        </Links>
+      )}
     </Navigation>
   );
 }

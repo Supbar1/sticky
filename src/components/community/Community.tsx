@@ -13,7 +13,7 @@ const CommunitySection = styled.div`
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
-  @media (max-width: 57rem) {
+  @media (max-width: 60rem) {
     flex-direction: column;
     font-size: var(fs--300);
     i {
@@ -26,19 +26,35 @@ const CommentsSection = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  @media (max-width: 57rem) {
+  font-size: var(--fs-body);
+  @media (max-width: 60rem) {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-size: var(--fs-300);
   }
 `;
+type SingleTopic = {
+  readonly userId: number;
+  readonly id: number;
+  title: string;
+  completed: boolean;
+};
+
+type Comment = {
+  readonly postId: number;
+  readonly id: number;
+  name: string;
+  email: string;
+  body: string;
+};
 
 export default function GetApiComments() {
-  const [topics, setTopics] = useState([]);
-  const [comments, setComments] = useState();
+  const [topics, setTopics] = useState<SingleTopic[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
 
   let numberOfTopics = 5,
     numberOfComments = numberOfTopics * 5;
@@ -74,7 +90,7 @@ export default function GetApiComments() {
     setActualComments(newPosts);
   };
 
-  const handleUpdate = async (comment) => {
+  const handleUpdate = async (comment: Comment) => {
     comment.body = comment.body + " Updated";
     const commentsFromState = [...comments];
     commentsFromState[comments.indexOf(comment)] = { ...comment };
@@ -82,7 +98,7 @@ export default function GetApiComments() {
     await http.put(config.apiComments + "/" + comment.id, comment);
   };
 
-  const handleDelete = async (comment) => {
+  const handleDelete = async (comment: Comment) => {
     const orginalComments = comments;
     const filteredComments = comments.filter((p) => p.id !== comment.id);
     setComments(filteredComments);
@@ -90,21 +106,20 @@ export default function GetApiComments() {
       (p) => p.id !== comment.id
     );
     setActualComments(filteredActualComments);
-
     try {
       await http.delete(config.apiComments + "/" + comment.id);
-    } catch (er) {
+    } catch (er: any) {
       if (er.response && er.response.status === 404)
         alert("This post has already been deleted");
       setActualComments(orginalComments);
     }
   };
-  
-  const [actualTopic, setActualTopic] = useState([]);
-  const [actualComments, setActualComments] = useState();
+
+  const [actualTopic, setActualTopic] = useState<string>();
+  const [actualComments, setActualComments] = useState<Comment[]>([]);
   const [topicPicked, setTopicPicked] = useState(false);
 
-  function onPageChange(topic, index) {
+  function onPageChange(topic: SingleTopic, index: number) {
     setActualComments(comments.slice(index * 5, index * 5 + 5));
     setActualTopic(topic.title);
     setTopicPicked(true);
@@ -112,8 +127,9 @@ export default function GetApiComments() {
   return (
     <CommunitySection>
       <Topics topics={topics} onPageChange={onPageChange} />
-      <CommentsSection className="fs-body">
+      <CommentsSection>
         <ActualTopic actualTopic={actualTopic} topicPicked={topicPicked} />
+
         <Comments
           actualComments={actualComments}
           handleUpdate={handleUpdate}

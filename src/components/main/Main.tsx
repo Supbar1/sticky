@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import Section1 from "./Section1";
 import Section2 from "./Section2";
-import Carousel from "./Carousel";
-import Section4 from "./Section4";
-import Footer from "./Footer";
-import "../../style.css";
+import Carousel from "./ShopCarousel";
+import Section3 from "./Section3";
 
 const Sections = styled.div`
   margin-inline: auto;
@@ -35,15 +33,14 @@ export default function Main() {
           <Section2 />
         </SmallScreen>
 
-        <Section4 />
+        <Section3 />
 
         <BigScreen>
           <Section2 />
         </BigScreen>
+
       </Sections>
       <Carousel />
-        <Footer />
-
     </>
   );
 }

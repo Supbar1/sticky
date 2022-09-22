@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Oak",
+    "price": 19.99,
+    "imgUrl": "https://dictionary.cambridge.org/pl/images/thumb/stick_noun_002_35886.jpg?version=5.0.247"
+  },
+  {
+    "id": 2,
+    "name": "Birch",
+    "price": 9.99,
+    "imgUrl": "https://dictionary.cambridge.org/pl/images/thumb/cane_noun_002_05401_2.jpg?version=5.0.247"
+  },
+  {
+    "id": 3,
+    "name": "Poplar",
+    "price": 29.99,
+    "imgUrl": "https://t3.ftcdn.net/jpg/02/73/91/22/360_F_273912213_LBGEypd6swD0kP4F1c05ykgOzJPUtWf4.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Pine",
+    "price": 12.49,
+    "imgUrl": "https://leerburg.com/Photos/product-pages/BW0003002/main-image.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Spruce",
+    "price": 22.99,
+    "imgUrl": "https://5.imimg.com/data5/TB/BB/MY-30992752/wood-walking-stick-250x250.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Fir",
+    "price": 7.49,
+    "imgUrl": "https://media.istockphoto.com/photos/wooden-stick-picture-id466085491?k=20&m=466085491&s=170667a&w=0&h=UEFMhO-ne5GA8Qj_aqa48ZEHbPntF0XR0MRWW3_qr28="
+  },
+  {
+    "id": 7,
+    "name": "Fire Tree",
+    "price": 7.49,
+    "imgUrl": "https://www.museumofplay.org/app/uploads/2021/08/stick_0.png"
+  }
+]

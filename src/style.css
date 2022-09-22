@@ -21,7 +21,7 @@
   --fw-semi-bold: 500;
   --fw-bold: 700;
 
-  --fs-300: 0.8rem;
+  --fs-300: 0.9rem;
   --fs-400: 1rem;
   --fs-500: 1.1rem;
   --fs-600: 1.8rem;
@@ -44,6 +44,9 @@
   --size-700: 3rem;
   --size-800: 4rem;
   --size-900: 5rem;
+
+  --size-iPhone: 35rem;
+  --size-iPad: 60rem;
 }
 
 /*https://piccalil.li/blog/a-modern-css-reset/ */
@@ -59,6 +62,7 @@
   margin: 0;
   padding: 0;
   font: inherit;
+  line-height: 1.6;
 }
 
 /* Remove list styles on ul, ol elements with a list role, 
@@ -68,11 +72,8 @@ ul[role="list"] {
   list-style: none;
   padding: 0;
 }
-ul[role="list"] li :nth-child(n) :hover {
-  height: 100%;
-}
 li {
-  margin: 24px 0;
+  margin: 1.4rem 0;
 }
 /* Set core root defaults */
 
@@ -85,10 +86,28 @@ p {
   letter-spacing: 1px;
   transform: scale(0.9, 1.1);
 }
+
 img,
 picture {
   max-width: 100%;
   display: block;
+}
+section {
+  display: grid;
+  gap: 5vw;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  padding-block: var(--size-900);
+  font-size: var(--fs-body);
+}
+footer {
+  background-color: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
+}
+@media (max-width: 60em) {
+  footer img {
+    width: min(450px, 100%);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
@@ -167,10 +186,11 @@ picture {
 }
 .fs-primary-heading {
   font-size: var(--fs-primary-heading);
-  line-height: 1.2;
+  line-height: 1.6;
 }
 .fs-secondary-heading {
   font-size: var(--fs-secondary-heading);
+  line-height: 1.6;
 }
 
 .fs-300 {
@@ -238,10 +258,6 @@ picture {
 .margin {
   margin: 2rem;
 }
-h1.margin {
-  margin: 0px;
-  margin-bottom: 1rem;
-}
 .to-left {
   padding: 0.5rem 1rem;
   display: flex;
@@ -252,13 +268,13 @@ h1.margin {
 
 /*----------- MEDIA ------------------*/
 
-@media (max-width: 57em) {
+@media (max-width: 60em) {
   .fs-body {
     font-size: var(--fs-300);
   }
   .fs-primary-heading {
     font-size: var(--fs-900);
-    line-height: 1.2;
+    /* line-height: 1.2; */
   }
   .fs-secondary-heading {
     font-size: var(--fs-800);
@@ -306,12 +322,4 @@ h1.margin {
 .buy-button:hover,
 .buy-button:focus-visible {
   background-color: var(--clr-accent-300);
-}
-
-.able {
-  display: flex;
-}
-.disable {
-  display: none;
-  border: 1px solid red;
 }
