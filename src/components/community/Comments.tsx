@@ -65,36 +65,48 @@ const AddComment = styled.button`
   color: var(--clr-neutral-100);
   background-color: var(--clr-accent-400);
 `;
+interface CommentType {
+  readonly postId: number;
+  readonly id: number;
+  name: string;
+  email: string;
+  body: string;
+}
 
-export default function Comments({
+interface CommentProps {
+  actualComments: CommentType[];
+  handleUpdate: (comment: CommentType) => void;
+  handleDelete: (comment: CommentType) => void;
+  handleAdd: () => void;
+}
+
+const Comments = ({
   actualComments,
   handleUpdate,
   handleDelete,
-  handleAdd
-}) {
-  return (
-    <>
-      {actualComments &&
-        actualComments.map((comment, index) => (
-          <Comment key={index}>
-            <i className="fa-solid fa-circle-user"></i>
-            <User>
-              user:
-              <span>&nbsp; {comment.email}</span>
-            </User>
-            <Text>{comment.body}</Text>
+  handleAdd,
+}: CommentProps) => (
+  <>
+    {actualComments &&
+      actualComments.map((comment, index) => (
+        <Comment key={index}>
+          <i className="fa-solid fa-circle-user"></i>
+          <User>
+            user:
+            <span>&nbsp; {comment.email}</span>
+          </User>
+          <Text>{comment.body}</Text>
 
-            <Buttons>
-              <button onClick={() => handleUpdate(comment)}>Update</button>
-              <button onClick={() => handleDelete(comment, index)}>
-                Delete
-              </button>
-            </Buttons>
-          </Comment>
-        ))}
-      {actualComments && (
-        <AddComment onClick={() => handleAdd()}>Add Comment</AddComment>
-      )}
-    </>
-  );
-}
+          <Buttons>
+            <button onClick={() => handleUpdate(comment)}>Update</button>
+            <button onClick={() => handleDelete(comment)}>Delete</button>
+          </Buttons>
+        </Comment>
+      ))}
+    {actualComments && (
+      <AddComment onClick={() => handleAdd()}>Add Comment</AddComment>
+    )}
+  </>
+);
+
+export default Comments;

@@ -17,12 +17,15 @@ const Bar = styled.span`
   background-color: var(--clr-accent-400);
   border-radius: 10px;
 `;
-export default function ToggleButton({ click }) {
-  return (
-    <ButtonStyled onClick={click}>
-      <Bar></Bar>
-      <Bar></Bar>
-      <Bar></Bar>
-    </ButtonStyled>
-  );
+interface ToggleButtonProps {
+  click: () => void;
 }
+const ToggleButton = ({ click }:ToggleButtonProps) => (
+  <ButtonStyled onClick={click}>
+    <Bar></Bar>
+    <Bar></Bar>
+    <Bar></Bar>
+  </ButtonStyled>
+);
+
+export default ToggleButton;

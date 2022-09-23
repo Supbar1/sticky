@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useShoppingCart } from "./ShopContext";
-import { ShopItem } from "./ShopItem";
+import ShopItem from "./ShopItem";
 import storeItems from "../../services/items.json";
 
 const Container = styled.div`
@@ -58,12 +58,12 @@ const AddToCardButton = styled.button`
     background-color: var(--clr-accent-300);
   }
 `;
-type ShoppingCartProps = {
+interface ShoppingCartProps {
   isOpen: boolean;
   cartItems: { id: number; quantity: number }[];
-};
+}
 
-export default function ShoppingCart({ isOpen, cartItems }: ShoppingCartProps) {
+const ShoppingCart = ({ isOpen, cartItems }: ShoppingCartProps) => {
   const { closeCart, getItemQuantity, buyItems } = useShoppingCart();
 
   if (cartItems.length === 0) closeCart();
@@ -88,4 +88,5 @@ export default function ShoppingCart({ isOpen, cartItems }: ShoppingCartProps) {
       </ShopWindow>
     </Container>
   );
-}
+};
+export default ShoppingCart;

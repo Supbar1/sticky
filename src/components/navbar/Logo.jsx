@@ -24,11 +24,11 @@ const Sticky = styled.h1`
     font-size: 50px;
   }
 `;
-export default function Logo() {
-  return (
-    <StyledLogo>
-      <Sticky>Sticky</Sticky>
-      <span>TM</span>
-    </StyledLogo>
-  );
-}
+const Logo = () => (
+  <StyledLogo>
+    <Sticky>Sticky</Sticky>
+    <span>TM</span>
+  </StyledLogo>
+);
+
+export default Logo;

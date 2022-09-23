@@ -23,24 +23,23 @@ const SmallScreen = styled.div`
   }
 `;
 
-export default function Main() {
-  return (
-    <>
-      <Sections>
-        <Section1 />
+const Main = () => (
+  <>
+    <Sections>
+      <Section1 />
 
-        <SmallScreen>
-          <Section2 />
-        </SmallScreen>
+      <SmallScreen>
+        <Section2 />
+      </SmallScreen>
 
-        <Section3 />
+      <Section3 />
 
-        <BigScreen>
-          <Section2 />
-        </BigScreen>
+      <BigScreen>
+        <Section2 />
+      </BigScreen>
+    </Sections>
+    <Carousel />
+  </>
+);
 
-      </Sections>
-      <Carousel />
-    </>
-  );
-}
+export default Main;

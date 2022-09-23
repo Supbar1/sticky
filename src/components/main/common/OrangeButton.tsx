@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactNode } from "react";
 
 const ButtonStyled = styled.button`
   cursor: pointer;
@@ -18,8 +19,12 @@ const ButtonStyled = styled.button`
   }
 `;
 
-const Buttonx = ({ children }) => {
-  return <ButtonStyled>{children}</ButtonStyled>;
-};
+interface ButtonProps {
+  children: ReactNode;
+}
 
-export default Buttonx;
+const OrangeButton = ({ children }: ButtonProps) => (
+  <ButtonStyled>{children}</ButtonStyled>
+);
+
+export default OrangeButton;

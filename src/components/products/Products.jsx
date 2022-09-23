@@ -1,7 +1,7 @@
 import "../../style.css";
 import styled from "styled-components";
 import storeItems from "../../services/items.json";
-import { ShopItem } from "./ShopItem";
+import  ShopItem  from "./ShopItem";
 
 const Container = styled.div`
   display: flex;
@@ -35,8 +35,8 @@ const PageTitle = styled.h2`
     margin: 1rem;
   } ;
 `;
-export default function Products() {
-  return (
+ const Products=() =>
+   (
     <Container>
       <PageTitle>Products</PageTitle>
       <List>
@@ -48,4 +48,5 @@ export default function Products() {
       </List>
     </Container>
   );
-}
+
+export default Products;

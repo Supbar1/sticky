@@ -2,7 +2,7 @@ import Joi from "joi-browser";
 import Input from "./input";
 import Buttons from "./Buttons";
 
-export default function Form({
+const Form = ({
   username,
   usernameErrors,
   password,
@@ -12,7 +12,7 @@ export default function Form({
   setErrors,
   errors,
   setAccount,
-}) {
+}) => {
   function validate() {
     const result = Joi.validate(account, schema, { abortEarly: false });
     if (!result.error) return null;
@@ -80,4 +80,5 @@ export default function Form({
       </form>
     </>
   );
-}
+};
+export default Form;

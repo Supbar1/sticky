@@ -71,44 +71,44 @@ const Button = styled.button`
     background-color: var(--clr-accent-300);
   }
 `;
-export default function Buttons() {
-  return (
-    <>
-      <Remember>
-        <label>
-          <p>
-            <input type="checkbox" name="" />
-            &nbsp;Remember me
-          </p>
-        </label>
-      </Remember>
-      <InputBox>
-        <p>Forget Password?</p>
-        <Button>Sign in</Button>
-      </InputBox>
-      <InputBox>
+const Buttons = () => (
+  <>
+    <Remember>
+      <label>
         <p>
-          Don't have an account? <a href="#">Sign up</a>
+          <input type="checkbox" name="" />
+          &nbsp;Remember me
         </p>
-      </InputBox>
-      <h3>Login with social media</h3>
-      <SocialMediaList>
-        <li>
-          <a href="https://www.facebook.com/">
-            <i className="fa-brands fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a aria-label="twitter" href="https://www.twitter.com/">
-            <i className="fa-brands fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a aria-label="instagram" href="https://www.instagram.com/">
-            <i className="fa-brands fa-instagram"></i>
-          </a>
-        </li>
-      </SocialMediaList>
-    </>
-  );
-}
+      </label>
+    </Remember>
+    <InputBox>
+      <p>Forget Password?</p>
+      <Button>Sign in</Button>
+    </InputBox>
+    <InputBox>
+      <p>
+        Don't have an account? <a href="#">Sign up</a>
+      </p>
+    </InputBox>
+    <h3>Login with social media</h3>
+    <SocialMediaList>
+      <li>
+        <a href="https://www.facebook.com/">
+          <i className="fa-brands fa-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a aria-label="twitter" href="https://www.twitter.com/">
+          <i className="fa-brands fa-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a aria-label="instagram" href="https://www.instagram.com/">
+          <i className="fa-brands fa-instagram"></i>
+        </a>
+      </li>
+    </SocialMediaList>
+  </>
+);
+
+export default Buttons;

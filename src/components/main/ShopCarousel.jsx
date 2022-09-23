@@ -61,23 +61,23 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 },
 ];
 
-export default function ShopCarousel() {
-  return (
-    <CustomisedCarousel>
-      <Carousel breakPoints={breakPoints}>
-        {storeItems.map((item, index) => (
-          <CarouselElement key={index}>
-            <Item>
-              <img src={item.imgUrl} alt="stick" />
-            </Item>
-            <div>{item.name}</div>
-            <div>{formatCurrency(item.price)}</div>
-            <Link to="/products">
-              <CarouselButton>Buy stick!</CarouselButton>
-            </Link>
-          </CarouselElement>
-        ))}
-      </Carousel>
-    </CustomisedCarousel>
-  );
-}
+const ShopCarousel = () => (
+  <CustomisedCarousel>
+    <Carousel breakPoints={breakPoints}>
+      {storeItems.map((item, index) => (
+        <CarouselElement key={index}>
+          <Item>
+            <img src={item.imgUrl} alt="stick" />
+          </Item>
+          <div>{item.name}</div>
+          <div>{formatCurrency(item.price)}</div>
+          <Link to="/products">
+            <CarouselButton>Buy stick!</CarouselButton>
+          </Link>
+        </CarouselElement>
+      ))}
+    </Carousel>
+  </CustomisedCarousel>
+);
+
+export default ShopCarousel;

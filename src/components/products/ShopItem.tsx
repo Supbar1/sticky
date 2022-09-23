@@ -39,14 +39,14 @@ const AddToCardButton = styled.button`
   padding: 0.75em 1.5em;
   height: 40px;
 `;
-type ShopItemProps = {
+interface ShopItemProps  {
   id: number;
   name: string;
   price: number;
   imgUrl: string;
 };
 
-export function ShopItem({ id, name, price, imgUrl }: ShopItemProps) {
+ const ShopItem=({ id, name, price, imgUrl }: ShopItemProps) =>{
   const {
     getItemQuantity,
     decreaseCartQuantity,
@@ -84,3 +84,4 @@ export function ShopItem({ id, name, price, imgUrl }: ShopItemProps) {
     </>
   );
 }
+export default ShopItem;

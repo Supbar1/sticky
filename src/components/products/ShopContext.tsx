@@ -2,16 +2,16 @@ import React, { useState, createContext, ReactNode } from "react";
 import ShoppingCart from "./ShoppingCart";
 import { toast } from "react-toastify";
 
-type ShoppingCartProviderProps = {
+interface ShoppingCartProviderProps {
   children: ReactNode;
-};
+}
 
-type CartItem = {
+interface CartItemType {
   id: number;
   quantity: number;
-};
+}
 
-type ShoppingCardContext = {
+interface ShoppingCardContext {
   openCart: () => void;
   closeCart: () => void;
   buyItems: () => void;
@@ -20,17 +20,17 @@ type ShoppingCardContext = {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
-  cartItems: CartItem[];
-};
+  cartItems: CartItemType[];
+}
 
 const ShoppingContext = createContext({} as ShoppingCardContext);
 
-export function useShoppingCart() {
+export const useShoppingCart = () => {
   return React.useContext(ShoppingContext);
-}
+};
 
-export default function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const openCart = () => {
@@ -117,5 +117,6 @@ export default function ShoppingCartProvider({ children }: ShoppingCartProviderP
       </React.StrictMode>
     </ShoppingContext.Provider>
   );
-}
+};
 
+export default ShoppingCartProvider;

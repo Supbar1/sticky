@@ -59,7 +59,7 @@ const FormBox = styled.div`
   }
 `;
 
-export default function Login() {
+const Login = () =>{
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -97,3 +97,4 @@ export default function Login() {
     </LoginContainer>
   );
 }
+export default Login 

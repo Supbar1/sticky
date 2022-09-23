@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactNode } from "react";
 
 const CenterStyled = styled.div`
   display: flex;
@@ -20,12 +21,12 @@ const CenterStyled = styled.div`
   }
 `;
 
-const Center = ({children}) => {
-    return ( 
-        <CenterStyled>
-            {children}
-        </CenterStyled>
-     );
+interface CenterProps {
+  children: ReactNode;
 }
- 
+
+const Center = ({ children }: CenterProps) => (
+  <CenterStyled>{children}</CenterStyled>
+);
+
 export default Center;

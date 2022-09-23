@@ -22,20 +22,21 @@ const Heading = styled.h2`
     padding-block: var(--size-400);
   }
 `;
-
-const Text = ({ heading2, heading3 }) => {
-  return (
-    <>
-      {heading2 && <Heading>{heading2}</Heading>}
-      {heading3 && <Heading3>{heading3}</Heading3>}
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-        modi eligendi quidem? Accusantium velit delectus necessitatibus
-        blanditiis unde? Error illum dolor, est non modi ex debitis cupiditate
-        necessitatibus aut voluptatem.
-      </p>
-    </>
-  );
-};
+interface TextProps {
+  heading2: string;
+  heading3: string;
+}
+const Text = ({ heading2, heading3 }: TextProps) => (
+  <>
+    {heading2 && <Heading>{heading2}</Heading>}
+    {heading3 && <Heading3>{heading3}</Heading3>}
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur modi
+      eligendi quidem? Accusantium velit delectus necessitatibus blanditiis
+      unde? Error illum dolor, est non modi ex debitis cupiditate necessitatibus
+      aut voluptatem.
+    </p>
+  </>
+);
 
 export default Text;

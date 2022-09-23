@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import ToggleButton from "./ToggleButton";
-import { useShoppingCart } from "./../products/ShopContext";
+import { useShoppingCart } from "../products/ShopContext";
 
 const ShoppingCart = styled.div`
   display: flex;
@@ -22,8 +22,14 @@ const StyledTitle = styled.div`
     margin-right: 1rem;
   }
 `;
-export default function PageTitle({ click }) {
+
+interface PageTitleProps {
+  click: () => void;
+}
+
+const PageTitle = ({ click }: PageTitleProps) => {
   const { openCart, cartQuantity } = useShoppingCart();
+  
   return (
     <StyledTitle>
       <img
@@ -40,4 +46,5 @@ export default function PageTitle({ click }) {
       <ToggleButton click={click} />
     </StyledTitle>
   );
-}
+};
+export default PageTitle;

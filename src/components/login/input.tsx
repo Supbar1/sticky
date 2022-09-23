@@ -37,23 +37,28 @@ const Alert = styled.div`
     font-size: var(--fs-300);
   }
 `;
-
-const Input = ({ name, label, value, error, onChange, type }) => {
-  return (
-    <Column>
-      <InputBox>
-        <label htmlFor={name}>{label}</label>
-        <input
-          value={value}
-          onChange={onChange}
-          id={name}
-          name={name}
-          type={type}
-        />
-        {error && <Alert>{error}</Alert>}
-      </InputBox>
-    </Column>
-  );
-};
+interface InputProps {
+  name: string;
+  label: string;
+  value: number;
+  error: string;
+  onChange: () => void;
+  type: string;
+}
+const Input = ({ name, label, value, error, onChange, type }: InputProps) => (
+  <Column>
+    <InputBox>
+      <label htmlFor={name}>{label}</label>
+      <input
+        value={value}
+        onChange={onChange}
+        id={name}
+        name={name}
+        type={type}
+      />
+      {error && <Alert>{error}</Alert>}
+    </InputBox>
+  </Column>
+);
 
 export default Input;

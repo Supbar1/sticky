@@ -22,10 +22,15 @@ const Heading = styled.h2`
     font-size: var(--fs-800);
   }
 `;
-export default function ActualTopic({ actualTopic, topicPicked }) {
-  return (
-    <Title>
-      <Heading>{topicPicked && actualTopic}</Heading>
-    </Title>
-  );
-}
+
+type ActualTopicType = {
+  actualTopic: string;
+};
+
+const TopicHeading = ({ actualTopic }: ActualTopicType) => (
+  <Title>
+    <Heading>{actualTopic}</Heading>
+  </Title>
+);
+
+export default TopicHeading;

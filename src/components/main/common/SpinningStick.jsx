@@ -28,8 +28,6 @@ const StickAnimation = styled.div`
   }
 `;
 
-const SpinningStick = () => {
-  return <StickAnimation />;
-};
+const SpinningStick = () => <StickAnimation />;
 
 export default SpinningStick;

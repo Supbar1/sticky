@@ -32,17 +32,26 @@ const Titles = styled.div`
     margin: 1rem;
   }
 `;
+type SingleTopicType = {
+  readonly userId: number;
+  readonly id: number;
+  title: string;
+  completed: boolean;
+};
+type TopicsType = {
+  topics: SingleTopicType[];
+  onPageChange: (topic: SingleTopicType) => void;
+};
+const Topics = ({ topics, onPageChange }: TopicsType) => (
+  <TopicsSection>
+    <Heading>choose topic</Heading>
+    {topics &&
+      topics.map((topic, index) => (
+        <Titles key={index} onClick={() => onPageChange(topic)}>
+          {topic.title}
+        </Titles>
+      ))}
+  </TopicsSection>
+);
 
-export default function Topics({ topics, onPageChange }){
-  return (
-    <TopicsSection>
-      <Heading>choose topic</Heading>
-      {topics &&
-        topics.map((topic, index) => (
-          <Titles key={index} onClick={() => onPageChange(topic, index)}>
-            {topic.title}
-          </Titles>
-        ))}
-    </TopicsSection>
-  );
-}
+export default Topics;

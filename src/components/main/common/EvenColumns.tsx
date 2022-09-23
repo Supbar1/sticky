@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { ReactNode } from "react";
 
 const EvenColumnsStyled = styled.div`
-   padding-block: var(--size-900);
+  padding-block: var(--size-900);
   font-size: var(--fs-body);
   display: grid;
   gap: 5vw;
@@ -12,13 +13,11 @@ const EvenColumnsStyled = styled.div`
     grid-auto-columns: 1fr;
   }
 `;
-
-const EvenColumns = ({children}) => {
-    return ( 
-        <EvenColumnsStyled>
-            {children}
-        </EvenColumnsStyled>
-     );
+interface EvenColumnsProps {
+  children: ReactNode;
 }
- 
+const EvenColumns = ({ children }: EvenColumnsProps) => (
+  <EvenColumnsStyled>{children}</EvenColumnsStyled>
+);
+
 export default EvenColumns;

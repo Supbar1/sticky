@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import storeItems from "../../services/items.json";
 import Center from "./common/Center";
 import EvenColumns from "./common/EvenColumns";
-import Buttonx from "./common/Buttonx";
+import Buttonx from "./common/OrangeButton";
 import SpinningStick from "./common/SpinningStick";
 
 const Heading = styled.h2`
@@ -27,22 +27,22 @@ const Heading = styled.h2`
   }
 `;
 
-export default function Section3() {
-  return (
-    <section>
-      <EvenColumns>
-        <Heading>
-          Did you know that most sticks are made of wood? WOW!
-          <Link to="login">
-            <Buttonx>Get Started</Buttonx>
-          </Link>
-        </Heading>
-        <SpinningStick />
+const Section3 = () => (
+  <section>
+    <EvenColumns>
+      <Heading>
+        Did you know that most sticks are made of wood? WOW!
+        <Link to="login">
+          <Buttonx>Get Started</Buttonx>
+        </Link>
+      </Heading>
+      <SpinningStick />
 
-        <Center>
-          <img alt="sorry for stick" src={storeItems[6].imgUrl} />
-        </Center>
-      </EvenColumns>
-    </section>
-  );
-}
+      <Center>
+        <img alt="sorry for stick" src={storeItems[6].imgUrl} />
+      </Center>
+    </EvenColumns>
+  </section>
+);
+
+export default Section3;

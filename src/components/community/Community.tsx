@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import http from "../../services/httpService";
 import config from "../../services/config.json";
-import ActualTopic from "./ActualTopic";
+import ActualTopic from "./TopicHeading";
 import Comments from "./Comments";
 import Topics from "./Topics";
 import "../../style.css";
@@ -37,14 +37,15 @@ const CommentsSection = styled.div`
     font-size: var(--fs-300);
   }
 `;
-type SingleTopic = {
+
+interface TopicType  {
   readonly userId: number;
   readonly id: number;
   title: string;
   completed: boolean;
 };
 
-type Comment = {
+interface CommentType  {
   readonly postId: number;
   readonly id: number;
   name: string;
@@ -52,21 +53,21 @@ type Comment = {
   body: string;
 };
 
-export default function GetApiComments() {
-  const [topics, setTopics] = useState<SingleTopic[]>([]);
-  const [comments, setComments] = useState<Comment[]>([]);
+ const GetApiComments=()=> {
+  const [topics, setTopics] = useState<TopicType[]>([]);
+  const [comments, setComments] = useState<CommentType[]>([]);
 
-  let numberOfTopics = 5,
-    numberOfComments = numberOfTopics * 5;
+  let numberOfTopicsDisplayed = 5,
+    numberOfCommentsDisplayed = numberOfTopicsDisplayed * 5;
 
-  const ApiTopics = async () => {
+  const apiTopics = async () => {
     const { data: topics } = await http.get(config.apiTopics);
-    setTopics(topics.slice(0, numberOfTopics));
+    setTopics(topics.slice(0, numberOfTopicsDisplayed));
   };
 
-  const ApiComments = async () => {
+  const apiComments = async () => {
     const { data: comments } = await http.get(config.apiComments);
-    setComments(comments.slice(0, numberOfComments));
+    setComments(comments.slice(0, numberOfCommentsDisplayed));
     for (let element of comments) {
       const nickEnd = element.email.indexOf("@");
       const nick = element.email.slice(0, nickEnd);
@@ -74,12 +75,12 @@ export default function GetApiComments() {
     }
   };
   useEffect(() => {
-    ApiTopics();
-    ApiComments();
+    apiTopics();
+    apiComments();
   }, []);
 
   const handleAdd = async () => {
-    const obj = {
+    const obj : CommentType= {
       postId: 5,
       id: 26,
       name: "text",
@@ -90,7 +91,7 @@ export default function GetApiComments() {
     setActualComments(newPosts);
   };
 
-  const handleUpdate = async (comment: Comment) => {
+  const handleUpdate = async (comment: CommentType) => {
     comment.body = comment.body + " Updated";
     const commentsFromState = [...comments];
     commentsFromState[comments.indexOf(comment)] = { ...comment };
@@ -98,7 +99,7 @@ export default function GetApiComments() {
     await http.put(config.apiComments + "/" + comment.id, comment);
   };
 
-  const handleDelete = async (comment: Comment) => {
+  const handleDelete = async (comment: CommentType) => {
     const orginalComments = comments;
     const filteredComments = comments.filter((p) => p.id !== comment.id);
     setComments(filteredComments);
@@ -115,21 +116,19 @@ export default function GetApiComments() {
     }
   };
 
-  const [actualTopic, setActualTopic] = useState<string>();
-  const [actualComments, setActualComments] = useState<Comment[]>([]);
-  const [topicPicked, setTopicPicked] = useState(false);
+  const [actualTopic, setActualTopic] = useState<string>("");
+  const [actualComments, setActualComments] = useState<CommentType[]>([]);
 
-  function onPageChange(topic: SingleTopic, index: number) {
-    setActualComments(comments.slice(index * 5, index * 5 + 5));
+  const onPageChange=(topic: TopicType) =>{
+    setActualComments(comments.slice((topic.id - 1) * 5, (topic.id-1) * 5  + 5));
     setActualTopic(topic.title);
-    setTopicPicked(true);
   }
+
   return (
     <CommunitySection>
       <Topics topics={topics} onPageChange={onPageChange} />
       <CommentsSection>
-        <ActualTopic actualTopic={actualTopic} topicPicked={topicPicked} />
-
+        <ActualTopic actualTopic={actualTopic} />
         <Comments
           actualComments={actualComments}
           handleUpdate={handleUpdate}
@@ -140,3 +139,4 @@ export default function GetApiComments() {
     </CommunitySection>
   );
 }
+export default GetApiComments
