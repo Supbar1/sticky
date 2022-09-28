@@ -4,7 +4,7 @@ const ButtonStyled = styled.div`
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  @media (max-width: 57em) {
+  @media (max-width: 65em) {
     display: flex;
     margin-right: 20px;
     width: 60px;
@@ -13,16 +13,19 @@ const ButtonStyled = styled.div`
 `;
 const Bar = styled.span`
   height: 8px;
-  width: 100%;
+  width: 45px;
   background-color: var(--clr-accent-400);
   border-radius: 10px;
 `;
-export default function ToggleButton({ click }) {
-  return (
-    <ButtonStyled onClick={click}>
-      <Bar></Bar>
-      <Bar></Bar>
-      <Bar></Bar>
-    </ButtonStyled>
-  );
+interface ToggleButtonProps {
+  click: () => void;
 }
+const ToggleButton = ({ click }:ToggleButtonProps) => (
+  <ButtonStyled onClick={click}>
+    <Bar></Bar>
+    <Bar></Bar>
+    <Bar></Bar>
+  </ButtonStyled>
+);
+
+export default ToggleButton;

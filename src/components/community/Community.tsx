@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import http from "../../services/httpService";
 import config from "../../services/config.json";
-import ActualTopic from "./ActualTopic";
+import ActualTopic from "./TopicHeading";
 import Comments from "./Comments";
 import Topics from "./Topics";
 import "../../style.css";
@@ -13,7 +13,7 @@ const CommunitySection = styled.div`
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
-  @media (max-width: 57rem) {
+  @media (max-width: 60rem) {
     flex-direction: column;
     font-size: var(fs--300);
     i {
@@ -26,31 +26,48 @@ const CommentsSection = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  @media (max-width: 57rem) {
+  font-size: var(--fs-body);
+  @media (max-width: 60rem) {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-size: var(--fs-300);
   }
 `;
 
-export default function GetApiComments() {
-  const [topics, setTopics] = useState([]);
-  const [comments, setComments] = useState();
+interface TopicType  {
+  readonly userId: number;
+  readonly id: number;
+  title: string;
+  completed: boolean;
+};
 
-  let numberOfTopics = 5,
-    numberOfComments = numberOfTopics * 5;
+interface CommentType  {
+  readonly postId: number;
+  readonly id: number;
+  name: string;
+  email: string;
+  body: string;
+};
 
-  const ApiTopics = async () => {
+ const GetApiComments=()=> {
+  const [topics, setTopics] = useState<TopicType[]>([]);
+  const [comments, setComments] = useState<CommentType[]>([]);
+
+  let numberOfTopicsDisplayed = 5,
+    numberOfCommentsDisplayed = numberOfTopicsDisplayed * 5;
+
+  const apiTopics = async () => {
     const { data: topics } = await http.get(config.apiTopics);
-    setTopics(topics.slice(0, numberOfTopics));
+    setTopics(topics.slice(0, numberOfTopicsDisplayed));
   };
 
-  const ApiComments = async () => {
+  const apiComments = async () => {
     const { data: comments } = await http.get(config.apiComments);
-    setComments(comments.slice(0, numberOfComments));
+    setComments(comments.slice(0, numberOfCommentsDisplayed));
     for (let element of comments) {
       const nickEnd = element.email.indexOf("@");
       const nick = element.email.slice(0, nickEnd);
@@ -58,12 +75,12 @@ export default function GetApiComments() {
     }
   };
   useEffect(() => {
-    ApiTopics();
-    ApiComments();
+    apiTopics();
+    apiComments();
   }, []);
 
   const handleAdd = async () => {
-    const obj = {
+    const obj : CommentType= {
       postId: 5,
       id: 26,
       name: "text",
@@ -74,7 +91,7 @@ export default function GetApiComments() {
     setActualComments(newPosts);
   };
 
-  const handleUpdate = async (comment) => {
+  const handleUpdate = async (comment: CommentType) => {
     comment.body = comment.body + " Updated";
     const commentsFromState = [...comments];
     commentsFromState[comments.indexOf(comment)] = { ...comment };
@@ -82,7 +99,7 @@ export default function GetApiComments() {
     await http.put(config.apiComments + "/" + comment.id, comment);
   };
 
-  const handleDelete = async (comment) => {
+  const handleDelete = async (comment: CommentType) => {
     const orginalComments = comments;
     const filteredComments = comments.filter((p) => p.id !== comment.id);
     setComments(filteredComments);
@@ -90,30 +107,28 @@ export default function GetApiComments() {
       (p) => p.id !== comment.id
     );
     setActualComments(filteredActualComments);
-
     try {
       await http.delete(config.apiComments + "/" + comment.id);
-    } catch (er) {
+    } catch (er: any) {
       if (er.response && er.response.status === 404)
         alert("This post has already been deleted");
       setActualComments(orginalComments);
     }
   };
-  
-  const [actualTopic, setActualTopic] = useState([]);
-  const [actualComments, setActualComments] = useState();
-  const [topicPicked, setTopicPicked] = useState(false);
 
-  function onPageChange(topic, index) {
-    setActualComments(comments.slice(index * 5, index * 5 + 5));
+  const [actualTopic, setActualTopic] = useState<string>("");
+  const [actualComments, setActualComments] = useState<CommentType[]>([]);
+
+  const onPageChange=(topic: TopicType) =>{
+    setActualComments(comments.slice((topic.id - 1) * 5, (topic.id-1) * 5  + 5));
     setActualTopic(topic.title);
-    setTopicPicked(true);
   }
+
   return (
     <CommunitySection>
       <Topics topics={topics} onPageChange={onPageChange} />
-      <CommentsSection className="fs-body">
-        <ActualTopic actualTopic={actualTopic} topicPicked={topicPicked} />
+      <CommentsSection>
+        <ActualTopic actualTopic={actualTopic} />
         <Comments
           actualComments={actualComments}
           handleUpdate={handleUpdate}
@@ -124,3 +139,4 @@ export default function GetApiComments() {
     </CommunitySection>
   );
 }
+export default GetApiComments
