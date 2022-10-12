@@ -59,16 +59,21 @@ const AddToCardButton = styled.button`
   }
 `;
 interface ShoppingCartProps {
-  isOpen: boolean;
+  isCartOpen: boolean;
   cartItems: { id: number; quantity: number }[];
 }
-
-const ShoppingCart = ({ isOpen, cartItems }: ShoppingCartProps) => {
+interface CartItemType {
+  id: number;
+  name: string;
+  price: number;
+  imgUrl: string;
+}
+const ShoppingCart = ({ isCartOpen, cartItems }: ShoppingCartProps) => {
   const { closeCart, getItemQuantity, buyItems } = useShoppingCart();
 
   if (cartItems.length === 0) closeCart();
 
-  if (isOpen === false) return null;
+  if (isCartOpen === false) return null;
 
   return (
     <Container>
@@ -77,7 +82,7 @@ const ShoppingCart = ({ isOpen, cartItems }: ShoppingCartProps) => {
           Products <i className="fa-solid fa-xmark" onClick={closeCart}></i>
         </Header>
         <p>Reminder: You may need more stick's</p>
-        {storeItems.map((item) => (
+        {storeItems.map((item:CartItemType) => (
           <ListItem key={item.id}>
             {getItemQuantity(item.id) > 0 && (
               <ShopItem {...item} id={item.id} />

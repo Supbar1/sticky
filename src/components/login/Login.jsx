@@ -3,19 +3,18 @@ import Joi from "joi-browser";
 import styled from "styled-components";
 import Form from "./Form";
 
-const LoginContainer = styled.div`
+const Container = styled.div`
   position: relative;
   display: flex;
-  p {
-    color: #607d8d;
+  justify-content: center;
+  p,
+  span {
+    color: var(--clr-neutral-400);
   }
 `;
 const ImageBox = styled.div`
   position: relative;
   width: 50%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   img {
     position: relative;
     top: 0;
@@ -24,12 +23,23 @@ const ImageBox = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  @media (max-width: 60em) {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0.15;
+  }
 `;
 const ContentBox = styled.div`
   display: flex;
+  flex-direction: column;
   width: 50%;
   justify-content: center;
   align-items: center;
+  @media (max-width: 60em) {
+    width: 80%;
+  }
+  border: 1px solid black;
 `;
 const FormBox = styled.div`
   width: 50%;
@@ -37,7 +47,7 @@ const FormBox = styled.div`
   h3 {
     line-height: 1.6;
     letter-spacing: 1.5px;
-    color: #607d8b;
+    color: var(--clr-neutral-400);
     font-weight: 600;
     font-size: 1.4em;
     text-transform: uppercase;
@@ -51,15 +61,14 @@ const FormBox = styled.div`
     border-bottom: 0;
     letter-spacing: 1.5px;
     font-weight: 400;
-    color: #607d8b;
+    color: var(--clr-neutral-400);
     font-size: 1.4em;
   }
   @media (max-width: 600px) {
     width: 80%;
   }
 `;
-
-const Login = () =>{
+const Login = () => {
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -67,12 +76,12 @@ const Login = () =>{
   const [errors, setErrors] = useState({});
 
   const schema = {
-    username: Joi.string().required().label("Username"),
-    password: Joi.string().required().label("Password"),
+    username: Joi.string().min(3).max(30).required().label("Username"),
+    password: Joi.string().min(3).max(30).required().label("Password"),
   };
 
   return (
-    <LoginContainer>
+    <Container>
       <ImageBox>
         <img
           src="https://www.woodtoolsanddeco.com/10220-large_default/set-of-200-wooden-sticks-square-40x40-mm-38-cm-length-birch-wood.jpg"
@@ -94,7 +103,7 @@ const Login = () =>{
           />
         </FormBox>
       </ContentBox>
-    </LoginContainer>
+    </Container>
   );
-}
-export default Login 
+};
+export default Login;

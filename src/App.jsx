@@ -1,17 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import NotFound from "./components/navbar/NotFound";
+import NotFound from "./components/navigation/navbar/NotFound";
 import Community from "./components/community/Community";
 import Products from "./components/products/Products";
 import Main from "./components/main/Main";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/navigation/navbar/Navbar";
 import "./style.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/login/Login";
 import ShoppingCartProvider from "./components/products/ShopContext";
-import Footer from "./components/main/Footer";
+import Footer from "./components/navigation/footer/Footer";
 
 const Scroll = styled.div`
   height: 100vh;

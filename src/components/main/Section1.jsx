@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
-import "../../style.css";
-import Text from "./common/Text";
-import Center from "./common/Center";
-import EvenColumns from "./common/EvenColumns";
-import Button from "./common/OrangeButton";
+import Text from "../../common/Text";
+import Center from "../../common/Center";
+import EvenColumns from "../../common/EvenColumns";
+import OrangeButton from "../../common/OrangeButtons";
 
 const Section1 = () => (
   <EvenColumns>
     <Center>
       <Text heading2="Our passion are sticks!" heading3={""} />
       <Link to="products">
-        <Button>Grab your stick!</Button>
+        <OrangeButton>Grab your stick!</OrangeButton>
       </Link>
     </Center>
     <Center>

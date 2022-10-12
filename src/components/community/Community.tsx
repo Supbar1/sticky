@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import http from "../../services/httpService";
 import config from "../../services/config.json";
-import ActualTopic from "./TopicHeading";
+import ActualTopic from "./ActualTopic";
 import Comments from "./Comments";
 import Topics from "./Topics";
-import "../../style.css";
+import CommentForm from "./CommentForm";
 
-const CommunitySection = styled.div`
+const Container = styled.div`
   margin: 5rem 0 1rem 0;
   display: flex;
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
-  @media (max-width: 60rem) {
+  @media (max-width: 60em) {
     flex-direction: column;
     font-size: var(fs--300);
     i {
@@ -27,7 +27,7 @@ const CommentsSection = styled.div`
   display: flex;
   flex-direction: column;
   font-size: var(--fs-body);
-  @media (max-width: 60rem) {
+  @media (max-width: 60em) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -38,34 +38,34 @@ const CommentsSection = styled.div`
   }
 `;
 
-interface TopicType  {
+interface TopicType {
   readonly userId: number;
   readonly id: number;
   title: string;
   completed: boolean;
-};
+}
 
-interface CommentType  {
+interface CommentType {
   readonly postId: number;
   readonly id: number;
   name: string;
   email: string;
   body: string;
-};
+}
 
- const GetApiComments=()=> {
+const GetApiComments = () => {
   const [topics, setTopics] = useState<TopicType[]>([]);
   const [comments, setComments] = useState<CommentType[]>([]);
 
   let numberOfTopicsDisplayed = 5,
     numberOfCommentsDisplayed = numberOfTopicsDisplayed * 5;
 
-  const apiTopics = async () => {
+  const apiTopics = async () : Promise<any>=> {
     const { data: topics } = await http.get(config.apiTopics);
     setTopics(topics.slice(0, numberOfTopicsDisplayed));
   };
 
-  const apiComments = async () => {
+  const apiComments = async () : Promise<any>=> {
     const { data: comments } = await http.get(config.apiComments);
     setComments(comments.slice(0, numberOfCommentsDisplayed));
     for (let element of comments) {
@@ -79,18 +79,6 @@ interface CommentType  {
     apiComments();
   }, []);
 
-  const handleAdd = async () => {
-    const obj : CommentType= {
-      postId: 5,
-      id: 26,
-      name: "text",
-      email: "User_Name",
-      body: "qui harum consequatur fugiat et eligendi perferendis at molestiae commodi ducimus doloremque asperiores numquam qui ut sit dignissimos reprehenderit tempore",
-    };
-    const newPosts = [...actualComments, obj];
-    setActualComments(newPosts);
-  };
-
   const handleUpdate = async (comment: CommentType) => {
     comment.body = comment.body + " Updated";
     const commentsFromState = [...comments];
@@ -103,7 +91,7 @@ interface CommentType  {
     const orginalComments = comments;
     const filteredComments = comments.filter((p) => p.id !== comment.id);
     setComments(filteredComments);
-    const filteredActualComments = actualComments.filter(
+    const filteredActualComments = actualTopicComments.filter(
       (p) => p.id !== comment.id
     );
     setActualComments(filteredActualComments);
@@ -117,26 +105,53 @@ interface CommentType  {
   };
 
   const [actualTopic, setActualTopic] = useState<string>("");
-  const [actualComments, setActualComments] = useState<CommentType[]>([]);
+  const [actualTopicComments, setActualComments] = useState<CommentType[]>([]);
 
-  const onPageChange=(topic: TopicType) =>{
-    setActualComments(comments.slice((topic.id - 1) * 5, (topic.id-1) * 5  + 5));
+  const onPageChange = (topic: TopicType) => {
+    setActualComments(
+      comments.slice((topic.id - 1) * 5, (topic.id - 1) * 5 + 5)
+    );
     setActualTopic(topic.title);
-  }
+  };
+  const [text, setText] = useState<string>("");
+
+  const onSubmit = async (event: any) => {
+    event.preventDefault();
+    const obj: CommentType = {
+      postId: 6,
+      id: actualTopicComments.length,
+      name: "text",
+      email: "User_Name",
+      body: text,
+    };
+    const newPosts = [...actualTopicComments, obj];
+    setActualComments(newPosts);
+    setText("");
+    const { data } = await http.post(config.apiComments, obj);
+    console.log(data);
+  };
 
   return (
-    <CommunitySection>
+    <Container>
       <Topics topics={topics} onPageChange={onPageChange} />
       <CommentsSection>
         <ActualTopic actualTopic={actualTopic} />
         <Comments
-          actualComments={actualComments}
+          actualTopicComments={actualTopicComments}
           handleUpdate={handleUpdate}
           handleDelete={handleDelete}
-          handleAdd={handleAdd}
         />
+        {actualTopic && (
+          <CommentForm
+            text={text}
+            onSubmit={onSubmit}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setText(e.target.value)
+            }
+          />
+        )}
       </CommentsSection>
-    </CommunitySection>
+    </Container>
   );
-}
-export default GetApiComments
+};
+export default GetApiComments;

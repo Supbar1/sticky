@@ -1,5 +1,5 @@
 import Joi from "joi-browser";
-import Input from "./input";
+import Input from "./Input";
 import Buttons from "./Buttons";
 
 const Form = ({

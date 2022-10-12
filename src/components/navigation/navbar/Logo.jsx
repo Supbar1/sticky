@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledLogo = styled.div`
+const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
@@ -25,10 +25,10 @@ const Sticky = styled.h1`
   }
 `;
 const Logo = () => (
-  <StyledLogo>
+  <Container>
     <Sticky>Sticky</Sticky>
     <span>TM</span>
-  </StyledLogo>
+  </Container>
 );
 
 export default Logo;

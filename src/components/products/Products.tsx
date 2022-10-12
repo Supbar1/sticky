@@ -1,7 +1,7 @@
 import "../../style.css";
 import styled from "styled-components";
 import storeItems from "../../services/items.json";
-import  ShopItem  from "./ShopItem";
+import ShopItem from "./ShopItem";
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Container = styled.div`
 const List = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  @media (max-width: 60rem) {
+  @media (max-width: 60em) {
     grid-template-columns: 1fr 1fr;
   }
   align-items: center;
@@ -30,23 +30,28 @@ const PageTitle = styled.h2`
   font-size: var(--fs-primary-heading);
   font-weight: var(--fw-bold);
   margin: 2rem;
-  @media (max-width: 60rem) {
+  @media (max-width: 60em) {
     font-size: var(--fs-primary-heading);
     margin: 1rem;
   } ;
 `;
- const Products=() =>
-   (
-    <Container>
-      <PageTitle>Products</PageTitle>
-      <List>
-        {storeItems.map((item) => (
-          <ListItem key={item.id}>
-            <ShopItem {...item} />
-          </ListItem>
-        ))}
-      </List>
-    </Container>
-  );
+interface ProductsType {
+  id: number;
+  name: string;
+  price: number;
+  imgUrl: string;
+}
+const Products = () => (
+  <Container>
+    <PageTitle>Products</PageTitle>
+    <List>
+      {storeItems.map((item: ProductsType) => (
+        <ListItem key={item.id}>
+          <ShopItem {...item} />
+        </ListItem>
+      ))}
+    </List>
+  </Container>
+);
 
 export default Products;

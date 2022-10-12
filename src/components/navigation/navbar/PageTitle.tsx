@@ -1,17 +1,9 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import ToggleButton from "./ToggleButton";
-import { useShoppingCart } from "../products/ShopContext";
+import { useShoppingCart } from "../../products/ShopContext";
 
-const ShoppingCart = styled.div`
-  display: flex;
-  align-items: center;
-
-  i {
-    color: var(--clr-accent-400);
-  }
-`;
-const StyledTitle = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -20,6 +12,14 @@ const StyledTitle = styled.div`
   font-size: var(--fs-700);
   i {
     margin-right: 1rem;
+  }
+`;
+const ShoppingCart = styled.div`
+  display: flex;
+  align-items: center;
+
+  i {
+    color: var(--clr-accent-400);
   }
 `;
 
@@ -31,7 +31,7 @@ const PageTitle = ({ click }: PageTitleProps) => {
   const { openCart, cartQuantity } = useShoppingCart();
   
   return (
-    <StyledTitle>
+    <Container>
       <img
         src="https://dictionary.cambridge.org/pl/images/thumb/stick_noun_002_35886.jpg?version=5.0.247"
         alt="sorry for stick"
@@ -44,7 +44,7 @@ const PageTitle = ({ click }: PageTitleProps) => {
         </ShoppingCart>
       )}
       <ToggleButton click={click} />
-    </StyledTitle>
+    </Container>
   );
 };
 export default PageTitle;

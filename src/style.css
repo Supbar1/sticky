@@ -1,10 +1,9 @@
 :root {
-  /*clr: colour, ff: font family, fw: font weight, fs: font size */
   --clr-neutral-100: hsl(0, 0%, 100%);
   --clr-neutral-800: hsl(232, 12%, 13%);
   --clr-neutral-900: hsl(0, 0%, 0%);
 
-  --clr-primary-400: hsl(228, 39%, 23%);
+  --clr-primary-400: hsl(228, 39%, 31%);
 
   --clr-accent-100: #ffefeb;
   --clr-accent-200: #fdc7ba;
@@ -45,8 +44,7 @@
   --size-800: 4rem;
   --size-900: 5rem;
 
-  --size-iPhone: 35rem;
-  --size-iPad: 60rem;
+  --size-media: 60em;
 }
 
 /*https://piccalil.li/blog/a-modern-css-reset/ */
@@ -81,7 +79,8 @@ html:focus-within {
   scroll-behavior: smooth;
 }
 /* Make images easier to work with */
-p {
+p,
+span {
   word-spacing: 1.5px;
   letter-spacing: 1px;
   transform: scale(0.9, 1.1);
@@ -92,23 +91,7 @@ picture {
   max-width: 100%;
   display: block;
 }
-section {
-  display: grid;
-  gap: 5vw;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  padding-block: var(--size-900);
-  font-size: var(--fs-body);
-}
-footer {
-  background-color: var(--clr-neutral-900);
-  color: var(--clr-neutral-100);
-}
-@media (max-width: 60em) {
-  footer img {
-    width: min(450px, 100%);
-  }
-}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;

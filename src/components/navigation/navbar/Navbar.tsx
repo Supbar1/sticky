@@ -1,16 +1,16 @@
 import { useState } from "react";
-import "../../style.css";
+
 import styled from "styled-components";
 import PageTitle from "./PageTitle";
 import NavbarLinks from "./NavbarLinks";
 
-const Navigation = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
   background-color: var(--clr-neutral-100);
   img {
   }
-  @media (max-width: 65em) {
+  @media (max-width: 60em) {
     flex-direction: column;
     img {
       display: none;
@@ -32,7 +32,7 @@ const Links = styled.div`
   div:hover {
     background-color: var(--clr-accent-100);
   }
-  @media (max-width: 65em) {
+  @media (max-width: 60em) {
     display: none;
     width: 100%;
   }
@@ -54,7 +54,7 @@ const LinksActive = styled.div`
   div:hover {
     background-color: var(--clr-accent-100);
   }
-  @media (max-width: 65em) {
+  @media (max-width: 60em) {
     flex-direction: column;
   }
 `;
@@ -66,7 +66,7 @@ const Navbar = () => {
     isOpenMenu ? setIsOpenMenu(false) : setIsOpenMenu(true);
   };
   return (
-    <Navigation>
+    <Container>
       <PageTitle click={navbarToggle} />
       {isOpenMenu ? (
         <LinksActive>
@@ -77,7 +77,7 @@ const Navbar = () => {
           <NavbarLinks />
         </Links>
       )}
-    </Navigation>
+    </Container>
   );
 };
 export default Navbar;

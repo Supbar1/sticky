@@ -1,7 +1,6 @@
-import "../../style.css";
-import Text from "./common/Text";
-import Center from "./common/Center";
-import EvenColumns from "./common/EvenColumns";
+import Text from "../../common/Text";
+import Center from "../../common/Center";
+import EvenColumns from "../../common/EvenColumns";
 
 const Section2 = () => (
   <EvenColumns>
