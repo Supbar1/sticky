@@ -1,0 +1,166 @@
+import { useState } from "react";
+import Input, { Textarea } from "./MessageInput";
+import styled from "styled-components";
+
+const Container = styled.form`
+  width: max(300px, 40%);
+`;
+
+const AcceptPermission = styled.div`
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.6rem;
+  input {
+    margin-right: 0.5rem;
+  }
+`;
+const OrangeButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  line-height: 1;
+  border-radius: 100vmax;
+  padding: 1.25em 2.5em;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-button);
+  color: var(--clr-neutral-100);
+  background-color: var(--clr-accent-400);
+  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
+  margin: 2rem;
+  @media (max-width: 60em) {
+    margin: 1rem;
+  }
+`;
+const ButtonCentered = styled.div`
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+`;
+
+const MessageForm = ({
+  schema,
+  message,
+  setMessage,
+  Name_Surname,
+  nameSurnameErrors,
+  emailSchema,
+  emailErrors,
+  phone,
+  phoneErrors,
+  company,
+  companyErrors,
+  userMessage,
+  userMessageErrors,
+  errors,
+  setErrors,
+  doSubmit,
+}) => {
+  const [agree, setAgree] = useState(true);
+
+  const validate = () => {
+    const result = schema.validate(message);
+    if (!result.error) return null;
+    const validateErrors = {};
+    for (let item of result.error.details)
+      validateErrors[item.path[0]] = item.message;
+
+    return validateErrors;
+  };
+
+  const handleSubmit = (e) => {
+    // function that prevents full page reload
+    e.preventDefault();
+    const submitErrors = validate();
+    setErrors(submitErrors || {});
+    if (!errors) return;
+    console.log(errors);
+  };
+
+  function validateProperty({ name, value }) {
+    //Computed Property Name in JavaScript
+    const obj = { [name]: value };
+    const rule = schema.extract(name);
+    const propertySchema = Joi.object({ [name]: rule });
+    const { error } = propertySchema.validate(obj);
+    return error ? error.details[0].message : null;
+  }
+
+  const handleChange = ({ currentTarget: input }) => {
+    const validateErrors = { ...errors };
+    const errorMessage = validateProperty(input);
+    if (errorMessage) {
+      validateErrors[input.name] = errorMessage;
+    } else {
+      delete validateErrors[input.name];
+    }
+    const newMessage = { ...message };
+    newMessage[input.name] = input.value;
+    setMessage(newMessage);
+    setErrors(validateErrors);
+  };
+
+  const Joi = require("joi");
+  return (
+    <>
+      <Container onSubmit={handleSubmit}>
+        <Input
+          name="Name_Surname"
+          value={Name_Surname}
+          onChange={handleChange}
+          type="text"
+          error={nameSurnameErrors}
+          placeholder="Name and Surname"
+        />
+        <Input
+          name="email"
+          value={emailSchema}
+          onChange={handleChange}
+          type="email"
+          error={emailErrors}
+          placeholder="E-mail adress*"
+        />
+        <Input
+          name="phone"
+          value={phone}
+          onChange={handleChange}
+          type="text"
+          error={phoneErrors}
+          placeholder="+48 Number"
+        />
+        <Input
+          name="company"
+          value={company}
+          onChange={handleChange}
+          type="text"
+          error={companyErrors}
+          placeholder="Name of company"
+        />
+        <Textarea
+          name="userMessage"
+          value={userMessage}
+          onChange={handleChange}
+          error={userMessageErrors}
+          placeholder="Your message*"
+        />
+        <AcceptPermission>
+          <input type="checkbox" onChange={() => setAgree(!agree)} />I hereby
+          give consent for my personal data included in the application to be
+          processed for the purposes of the recruitment process in accordance
+          with Art. 6 paragraph 1 letter a of the Regulation of the European
+          Parliament and of the Council (EU) 2016/679 of 27 April 2016 on the
+          protection of natural persons with regard to the processing of
+          personal data and on the free movement of such data, and repealing
+          Directive 95/46/EC (General Data Protection Regulation).
+        </AcceptPermission>
+        <ButtonCentered>
+          <OrangeButton
+            disabled={agree || validate()}
+            onClick={() => doSubmit()}
+          >
+            Send Message
+          </OrangeButton>
+        </ButtonCentered>
+      </Container>
+    </>
+  );
+};
+export default MessageForm;

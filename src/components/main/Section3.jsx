@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import "../../style.css";
 import { Link } from "react-router-dom";
 import storeItems from "../../services/items.json";
-import Center from "./common/Center";
-import EvenColumns from "./common/EvenColumns";
-import Buttonx from "./common/OrangeButton";
-import SpinningStick from "./common/SpinningStick";
+import Center from "../../common/Center";
+import EvenColumns from "../../common/EvenColumns";
+import Buttonx from "../../common/OrangeButtons";
+import SpinningStick from "../../common/SpinningStick";
 
 const Heading = styled.h2`
   display: flex;
@@ -15,9 +14,7 @@ const Heading = styled.h2`
   text-decoration: none;
   text-align: center;
   margin: 2rem;
-  //DIFFERENCE
   font-size: var(--fs-secondary-heading);
-  //DIFFERENCE
   line-height: 1.6;
   font-weight: var(--fw-bold);
   @media (max-width: 60em) {
@@ -28,21 +25,19 @@ const Heading = styled.h2`
 `;
 
 const Section3 = () => (
-  <section>
-    <EvenColumns>
-      <Heading>
-        Did you know that most sticks are made of wood? WOW!
-        <Link to="login">
-          <Buttonx>Get Started</Buttonx>
-        </Link>
-      </Heading>
-      <SpinningStick />
+  <EvenColumns>
+    <Heading>
+      Did you know that most sticks are made of wood? WOW!
+      <Link to="login">
+        <Buttonx>Get Started</Buttonx>
+      </Link>
+    </Heading>
+    <SpinningStick />
 
-      <Center>
-        <img alt="sorry for stick" src={storeItems[6].imgUrl} />
-      </Center>
-    </EvenColumns>
-  </section>
+    <Center>
+      <img alt="sorry for stick" src={storeItems[6].imgUrl} />
+    </Center>
+  </EvenColumns>
 );
 
 export default Section3;

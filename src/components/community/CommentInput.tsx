@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Column = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -26,49 +26,20 @@ const InputBox = styled.div`
     border-radius: 30px;
   }
 `;
-const Alert = styled.div`
-  height: 50px;
-  background-color: var(--clr-accent-300);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--fs-400);
-  @media (max-width: 60em) {
-    font-size: var(--fs-300);
-  }
-`;
+
 interface InputProps {
   name: string;
   label: string;
-  error: string;
-  type: string;
-  placeholder: string;
   value: number;
   onChange: () => void;
 }
-const Input = ({
-  name,
-  label,
-  value,
-  error,
-  onChange,
-  type,
-  placeholder,
-}: InputProps) => (
-  <Container>
+const Input = ({ name, label, value, onChange }: InputProps) => (
+  <Column>
     <InputBox>
       <label htmlFor={name}>{label}</label>
-      <input
-        value={value}
-        onChange={onChange}
-        id={name}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-      />
-      {error && <Alert>{error}</Alert>}
+      <textarea value={value} onChange={onChange} id={name} name={name} />
     </InputBox>
-  </Container>
+  </Column>
 );
 
 export default Input;

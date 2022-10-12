@@ -4,8 +4,9 @@ import Carousel from "react-elastic-carousel";
 import storeItems from "../../services/items.json";
 import { formatCurrency } from "../../services/formatCurrency";
 
-const CustomisedCarousel = styled.div`
-  margin: 2rem;
+const Container = styled.div`
+  width: min(1310px, 98%);
+  margin-bottom: 1rem;
   button.rec-dot {
     background-color: var(--clr-accent-400);
     box-shadow: 0 0 1px 3px var(--clr-accent-300);
@@ -62,7 +63,7 @@ const breakPoints = [
 ];
 
 const ShopCarousel = () => (
-  <CustomisedCarousel>
+  <Container>
     <Carousel breakPoints={breakPoints}>
       {storeItems.map((item, index) => (
         <CarouselElement key={index}>
@@ -77,7 +78,7 @@ const ShopCarousel = () => (
         </CarouselElement>
       ))}
     </Carousel>
-  </CustomisedCarousel>
+  </Container>
 );
 
 export default ShopCarousel;

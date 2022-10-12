@@ -6,7 +6,6 @@ const Container = styled.div`
 `;
 const InputBox = styled.div`
   margin-bottom: 5px;
-  display: inline-block;
   color: #607d8d;
   font-weight: 300;
   letter-spacing: 1px;
@@ -14,16 +13,20 @@ const InputBox = styled.div`
   @media (max-width: 60em) {
     font-size: var(--fs-400);
   }
-  input {
+  input,
+  textarea {
+    margin: 5px 0;
     width: 100%;
     padding: 10px 20px;
-    outline: none;
     font-weight: 400;
-    border: 1px solid #607d8b;
+    border: 1px solid var(--clr-primary-400);
     letter-spacing: 1px;
-    color: #607d8b;
+    color: var(--clr-primary-400);
     background: transparent;
-    border-radius: 30px;
+  }
+  textarea {
+    height: 8rem;
+    overflow: hidden;
   }
 `;
 const Alert = styled.div`
@@ -46,9 +49,8 @@ interface InputProps {
   value: number;
   onChange: () => void;
 }
-const Input = ({
+export const Input = ({
   name,
-  label,
   value,
   error,
   onChange,
@@ -57,7 +59,6 @@ const Input = ({
 }: InputProps) => (
   <Container>
     <InputBox>
-      <label htmlFor={name}>{label}</label>
       <input
         value={value}
         onChange={onChange}
@@ -72,3 +73,27 @@ const Input = ({
 );
 
 export default Input;
+
+export const Textarea = ({
+  name,
+  value,
+  error,
+  onChange,
+  type,
+  placeholder,
+}: InputProps) => {
+  return (
+    <Container>
+      <InputBox>
+        <textarea
+          value={value}
+          onChange={onChange}
+          id={name}
+          name={name}
+          placeholder={placeholder}
+        />
+        {error && <Alert>{error}</Alert>}
+      </InputBox>
+    </Container>
+  );
+};

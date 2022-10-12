@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const ButtonStyled = styled.div`
+const Container = styled.div`
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  @media (max-width: 65em) {
+  @media (max-width: 60em) {
     display: flex;
     margin-right: 20px;
     width: 60px;
@@ -20,12 +20,12 @@ const Bar = styled.span`
 interface ToggleButtonProps {
   click: () => void;
 }
-const ToggleButton = ({ click }:ToggleButtonProps) => (
-  <ButtonStyled onClick={click}>
+const ToggleButton = ({ click }: ToggleButtonProps) => (
+  <Container onClick={click}>
     <Bar></Bar>
     <Bar></Bar>
     <Bar></Bar>
-  </ButtonStyled>
+  </Container>
 );
 
 export default ToggleButton;

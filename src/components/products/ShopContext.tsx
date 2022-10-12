@@ -31,14 +31,14 @@ export const useShoppingCart = () => {
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCart = () => {
-    setIsOpen(true);
+    setIsCartOpen(true);
   };
 
   const closeCart = () => {
-    setIsOpen(false);
+    setIsCartOpen(false);
   };
 
   function buyItems() {
@@ -58,10 +58,10 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 
   function increaseCartQuantity(id: number) {
     setCartItems((cartItems) => {
-      if (cartItems.find((item) => item.id === id) == null) {
+      if (cartItems.find((item:CartItemType) => item.id === id) == null) {
         return [...cartItems, { id, quantity: 1 }];
       } else {
-        return cartItems.map((item) => {
+        return cartItems.map((item:CartItemType) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
@@ -74,10 +74,10 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 
   function decreaseCartQuantity(id: number) {
     setCartItems((cartItems) => {
-      if (cartItems.find((item) => item.id === id)?.quantity === 1) {
+      if (cartItems.find((item:CartItemType) => item.id === id)?.quantity === 1) {
         return cartItems.filter((item) => item.id !== id);
       } else {
-        return cartItems.map((item) => {
+        return cartItems.map((item:CartItemType) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
@@ -113,7 +113,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     >
       {children}
       <React.StrictMode>
-        <ShoppingCart isOpen={isOpen} cartItems={cartItems} />
+        <ShoppingCart isCartOpen={isCartOpen} cartItems={cartItems} />
       </React.StrictMode>
     </ShoppingContext.Provider>
   );

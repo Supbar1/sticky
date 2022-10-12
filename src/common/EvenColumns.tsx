@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
 
-const EvenColumnsStyled = styled.div`
+const Container = styled.div`
   padding-block: var(--size-900);
   font-size: var(--fs-body);
   display: grid;
@@ -17,7 +17,7 @@ interface EvenColumnsProps {
   children: ReactNode;
 }
 const EvenColumns = ({ children }: EvenColumnsProps) => (
-  <EvenColumnsStyled>{children}</EvenColumnsStyled>
+  <Container>{children}</Container>
 );
 
 export default EvenColumns;

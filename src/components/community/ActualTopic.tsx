@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import "../../style.css";
 
-const Title = styled.div`
+const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -27,10 +26,8 @@ type ActualTopicType = {
   actualTopic: string;
 };
 
-const TopicHeading = ({ actualTopic }: ActualTopicType) => (
-  <Title>
-    <Heading>{actualTopic}</Heading>
-  </Title>
+const ActualTopic = ({ actualTopic }: ActualTopicType) => (
+  <Container>{actualTopic && <Heading>{actualTopic}</Heading>}</Container>
 );
 
-export default TopicHeading;
+export default ActualTopic;

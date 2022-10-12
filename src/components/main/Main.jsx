@@ -4,28 +4,28 @@ import Section2 from "./Section2";
 import Carousel from "./ShopCarousel";
 import Section3 from "./Section3";
 
-const Sections = styled.div`
+const Container = styled.div`
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
 `;
 const BigScreen = styled.div`
   display: none;
-  @media (max-width: 57rem) {
+  @media (max-width: 60em) {
     display: inherit;
   }
 `;
 
 const SmallScreen = styled.div`
   display: inherit;
-  @media (max-width: 57rem) {
+  @media (max-width: 60em) {
     display: none;
   }
 `;
 
 const Main = () => (
   <>
-    <Sections>
+    <Container>
       <Section1 />
 
       <SmallScreen>
@@ -37,8 +37,9 @@ const Main = () => (
       <BigScreen>
         <Section2 />
       </BigScreen>
-    </Sections>
-    <Carousel />
+
+      <Carousel />
+    </Container>
   </>
 );
 

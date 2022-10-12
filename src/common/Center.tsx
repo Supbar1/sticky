@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
 
-const CenterStyled = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@ interface CenterProps {
 }
 
 const Center = ({ children }: CenterProps) => (
-  <CenterStyled>{children}</CenterStyled>
+  <Container>{children}</Container>
 );
 
 export default Center;
