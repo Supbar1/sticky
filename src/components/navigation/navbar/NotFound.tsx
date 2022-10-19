@@ -9,6 +9,12 @@ const Container = styled.div`
   justify-content: center;
   font-size: var(--fs-body);
 `;
-const NotFound = () => <Container>NOT FOUND</Container>;
+const NotFound = () => {
+  return (
+    <>
+      <Container>NOT FOUND</Container>
+    </>
+  );
+};
 
 export default NotFound;

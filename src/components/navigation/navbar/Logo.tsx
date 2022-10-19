@@ -5,13 +5,11 @@ const Container = styled.div`
   width: 100%;
   justify-content: center;
   text-align: center;
-  span {
-    font-size: var(--fs-500);
-  }
+`;
+const Tm = styled.span`
+  font-size: var(--fs-500);
   @media (max-width: 60em) {
-    span {
-      font-size: var(--fs-300);
-    }
+    font-size: var(--fs-300);
   }
 `;
 const Sticky = styled.h1`
@@ -27,7 +25,7 @@ const Sticky = styled.h1`
 const Logo = () => (
   <Container>
     <Sticky>Sticky</Sticky>
-    <span>TM</span>
+    <Tm>TM</Tm>
   </Container>
 );
 

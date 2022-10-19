@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 import storeItems from "../../services/items.json";
-import { formatCurrency } from "../../services/formatCurrency";
+import formatCurrency from "../../services/formatCurrency";
 
 const Container = styled.div`
   width: min(1310px, 98%);
@@ -65,8 +65,8 @@ const breakPoints = [
 const ShopCarousel = () => (
   <Container>
     <Carousel breakPoints={breakPoints}>
-      {storeItems.map((item, index) => (
-        <CarouselElement key={index}>
+      {storeItems.map((item) => (
+        <CarouselElement key={item.id}>
           <Item>
             <img src={item.imgUrl} alt="stick" />
           </Item>

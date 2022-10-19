@@ -7,24 +7,24 @@ const Container = styled.div`
 const InputBox = styled.div`
   margin-bottom: 5px;
   display: inline-block;
-  color: #607d8d;
+  color: var(--clr-primary-400);
   font-weight: 300;
   letter-spacing: 1px;
   font-size: var(--fs-body);
   @media (max-width: 60em) {
     font-size: var(--fs-400);
   }
-  input {
-    width: 100%;
-    padding: 10px 20px;
-    outline: none;
-    font-weight: 400;
-    border: 1px solid #607d8b;
-    letter-spacing: 1px;
-    color: #607d8b;
-    background: transparent;
-    border-radius: 30px;
-  }
+`;
+const SingleInput = styled.input`
+  width: 100%;
+  padding: 10px 20px;
+  outline: none;
+  font-weight: 400;
+  border: 1px solid #607d8b;
+  letter-spacing: 1px;
+  color: #607d8b;
+  background: transparent;
+  border-radius: 30px;
 `;
 const Alert = styled.div`
   height: 50px;
@@ -42,9 +42,9 @@ interface InputProps {
   label: string;
   error: string;
   type: string;
-  placeholder: string;
-  value: number;
-  onChange: () => void;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  autoFocus: boolean;
 }
 const Input = ({
   name,
@@ -53,18 +53,18 @@ const Input = ({
   error,
   onChange,
   type,
-  placeholder,
+  autoFocus,
 }: InputProps) => (
   <Container>
     <InputBox>
       <label htmlFor={name}>{label}</label>
-      <input
+      <SingleInput
         value={value}
         onChange={onChange}
         id={name}
         name={name}
         type={type}
-        placeholder={placeholder}
+        autoFocus={autoFocus}
       />
       {error && <Alert>{error}</Alert>}
     </InputBox>

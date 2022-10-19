@@ -3,6 +3,7 @@ const CURRENCY_FORMATTER = new Intl.NumberFormat(undefined,{
     style:"currency",
 })
 
-export function formatCurrency(number: number){
+const formatCurrency=(number: number)=>{
     return CURRENCY_FORMATTER.format(number)
 }
+export default formatCurrency;

@@ -36,16 +36,16 @@ type SingleTopicType = {
   title: string;
   completed: boolean;
 };
-type TopicsType = {
+type TopicsProps = {
   topics: SingleTopicType[];
   onPageChange: (topic: SingleTopicType) => void;
 };
-const Topics = ({ topics, onPageChange }: TopicsType) => (
+const Topics = ({ topics, onPageChange }: TopicsProps) => (
   <Container>
     <Heading>choose topic</Heading>
     {topics &&
-      topics.map((topic:SingleTopicType, index:number) => (
-        <Titles key={index} onClick={() => onPageChange(topic)}>
+      topics.map((topic:SingleTopicType) => (
+        <Titles key={topic.id} onClick={() => onPageChange(topic)}>
           {topic.title}
         </Titles>
       ))}

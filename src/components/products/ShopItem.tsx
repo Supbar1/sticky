@@ -1,6 +1,6 @@
 import "../../style.css";
 import styled from "styled-components";
-import { formatCurrency } from "../../services/formatCurrency";
+import formatCurrency from "../../services/formatCurrency";
 import { useShoppingCart } from "./ShopContext";
 
 const StickImages = styled.img`
@@ -14,17 +14,17 @@ const AmmountButtons = styled.div`
   text-align: center;
   height: 40px;
   font-size: var(--fs-body);
-  i {
-    cursor: pointer;
-    margin: 1rem;
-    font-size: var(--fs-700);
-    color: var(--clr-accent-400);
-  }
   @media (max-width: 35em) {
     font-size: var(--fs-300);
-    i {
-      font-size: var(--fs-500);
-    }
+  }
+`;
+const AmmountButton = styled.i`
+  cursor: pointer;
+  margin: 1rem;
+  font-size: var(--fs-700);
+  color: var(--clr-accent-400);
+  @media (max-width: 35em) {
+    font-size: var(--fs-500);
   }
 `;
 const AddToCardButton = styled.button`
@@ -39,14 +39,15 @@ const AddToCardButton = styled.button`
   padding: 0.75em 1.5em;
   height: 40px;
 `;
-interface ShopItemProps  {
+
+interface ShopItemProps {
   id: number;
   name: string;
   price: number;
   imgUrl: string;
-};
+}
 
- const ShopItem=({ id, name, price, imgUrl }: ShopItemProps) =>{
+const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
   const {
     getItemQuantity,
     decreaseCartQuantity,
@@ -66,22 +67,22 @@ interface ShopItemProps  {
         </AddToCardButton>
       ) : (
         <AmmountButtons>
-          <i
+          <AmmountButton
             onClick={() => decreaseCartQuantity(id)}
             className="fa-solid fa-square-minus"
-          ></i>
+          ></AmmountButton>
           {quantity} in cart
-          <i
+          <AmmountButton
             onClick={() => increaseCartQuantity(id)}
             className="fa-solid fa-square-plus"
-          ></i>
-          <i
+          ></AmmountButton>
+          <AmmountButton
             onClick={() => removeFromCart(id)}
             className="fa-solid fa-trash-can"
-          ></i>
+          ></AmmountButton>
         </AmmountButtons>
       )}
     </>
   );
-}
+};
 export default ShopItem;

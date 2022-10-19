@@ -21,10 +21,10 @@ const Container = styled.div`
 `;
 const User = styled.p`
   grid-area: userName;
+  margin: 1rem;
   span {
     color: var(--clr-accent-400);
   }
-  margin: 1rem;
   @media (max-width: 60em) {
     margin: 0.5rem;
   }
@@ -35,26 +35,23 @@ const Text = styled.p`
   justify-content: left;
   text-align: left;
   margin: 1rem;
-
   @media (max-width: 60em) {
     margin: 0.5rem;
   }
 `;
-const Buttons = styled.div`
+const ButtonsBox = styled.div`
+  grid-area: buttons;
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+`;
 
-  button {
-    font-size: var(--fs-300);
-    margin: 5px;
-    border: none;
-    color: var(--clr-accent-200);
-    background-color: var(--clr-neutral-100);
-  }
-  @media (max-width: 60em) {
-    grid-area: buttons;
-  }
+const Button = styled.button`
+  font-size: var(--fs-300);
+  margin: 5px;
+  border: none;
+  color: var(--clr-accent-200);
+  background-color: var(--clr-neutral-100);
 `;
 
 interface CommentType {
@@ -71,19 +68,19 @@ interface InputProps {
   comment: CommentType;
   key: number;
 }
+
 const Comment = ({ comment, handleUpdate, handleDelete }: InputProps) => (
   <Container key={comment.id}>
     <i className="fa-solid fa-circle-user"></i>
     <User>
-      
       user:
       <span>&nbsp; {comment.email}</span>
     </User>
     <Text>{comment.body}</Text>
-    <Buttons>
-      <button onClick={() => handleUpdate(comment)}>Update</button>
-      <button onClick={() => handleDelete(comment)}>Delete</button>
-    </Buttons>
+    <ButtonsBox>
+      <Button onClick={() => handleUpdate(comment)}>Update</Button>
+      <Button onClick={() => handleDelete(comment)}>Delete</Button>
+    </ButtonsBox>
   </Container>
 );
 

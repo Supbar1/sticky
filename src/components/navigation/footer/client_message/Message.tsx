@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import CloseMark from "./CloseMark";
 import MessageForm from "./MessageForm";
 
 const Container = styled.div`
@@ -22,15 +23,28 @@ interface MessageInterface {
   isMessageOpen: boolean;
 }
 interface MessageType {
-  Name_Surname?: string;
+  nameSurname?: string;
   email?: string;
   phone?: string;
   company?: string;
   userMessage?: string;
 }
 const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
-  const [message, setMessage] = useState<MessageType>({});
-  const [messageErrors, setMessageErrors] = useState<MessageType>({});
+  const [message, setMessage] = useState<MessageType>({
+    nameSurname: "",
+    email: "",
+    phone: "",
+    company: "",
+    userMessage: "",
+  } as MessageType);
+
+  const [messageErrors, setMessageErrors] = useState<MessageType>({
+    nameSurname: "",
+    email: "",
+    phone: "",
+    company: "",
+    userMessage: "",
+  } as MessageType);
 
   const Joi = require("joi");
 
@@ -39,45 +53,49 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
   });
   const phoneSchema = Joi.string()
     .regex(/^[0-9]{11}$/)
+    .required()
     .messages({
       "string.pattern.base": "Must contain 11 digits (with prefix)",
     })
-    .required();
   const emailSchema = Joi.string()
+  .required()
     .email({
       minDomainSegments: 2,
       tlds: { allow: ["com", "net", "pl"] },
     })
-    .required();
   const companySchema = Joi.string().min(3).max(30);
   const userMessageSchema = Joi.string().min(3).max(1000).required();
 
   const schema = Joi.object({
-    Name_Surname: nameSurnameSchema,
+    nameSurname: nameSurnameSchema,
     email: emailSchema,
     phone: phoneSchema,
     company: companySchema,
     userMessage: userMessageSchema,
   });
 
-  const doSubmit = () => {};
+  const doSubmit = () => {
+    console.log("Submited");
+  };
+
+  if (!isMessageOpen) return null;
 
   return (
     <Container>
       <Header>
         Contact us
-        <i
-          className="fa-solid fa-xmark"
-          onClick={() => setIsMessageOpen(!isMessageOpen)}
-        ></i>
+        <CloseMark openMenu={() => setIsMessageOpen(!isMessageOpen)} />
       </Header>
       <MessageForm
         doSubmit={doSubmit}
+        schema={schema}
         message={message}
         setMessage={setMessage}
-        Name_Surname={message.Name_Surname}
-        nameSurnameErrors={messageErrors.Name_Surname}
-        emailSchema={message.email}
+        errors={messageErrors}
+        setErrors={setMessageErrors}
+        nameSurname={message.nameSurname}
+        nameSurnameErrors={messageErrors.nameSurname}
+        email={message.email}
         emailErrors={messageErrors.email}
         phone={message.phone}
         phoneErrors={messageErrors.phone}
@@ -85,9 +103,6 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
         companyErrors={messageErrors.company}
         userMessage={message.userMessage}
         userMessageErrors={messageErrors.userMessage}
-        schema={schema}
-        errors={messageErrors}
-        setErrors={setMessageErrors}
       />
     </Container>
   );
