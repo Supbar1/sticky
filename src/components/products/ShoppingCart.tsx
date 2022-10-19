@@ -38,9 +38,9 @@ const Header = styled.h2`
 `;
 const ListItem = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 2rem 0;
 `;
 const AddToCardButton = styled.button`

@@ -21,9 +21,9 @@ const Comments = ({
 }: CommentProps) => (
   <>
     {actualTopicComments &&
-      actualTopicComments.map((comment:CommentType, index:number) => (
+      actualTopicComments.map((comment:CommentType) => (
         <CommentForm
-          key={index}
+          key={comment.id}
           handleDelete={handleDelete}
           handleUpdate={handleUpdate}
           comment={comment}

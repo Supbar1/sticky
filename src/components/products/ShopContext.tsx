@@ -41,7 +41,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     setIsCartOpen(false);
   };
 
-  function buyItems() {
+  const buyItems=()=> {
     toast.info("Congratulations! You are Stick owner! :)");
     setCartItems([]);
     closeCart();
@@ -52,11 +52,11 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     0
   );
 
-  function getItemQuantity(id: number) {
+  const getItemQuantity=(id: number)=> {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
 
-  function increaseCartQuantity(id: number) {
+  const increaseCartQuantity=(id: number) =>{
     setCartItems((cartItems) => {
       if (cartItems.find((item:CartItemType) => item.id === id) == null) {
         return [...cartItems, { id, quantity: 1 }];
@@ -72,7 +72,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     });
   }
 
-  function decreaseCartQuantity(id: number) {
+  const decreaseCartQuantity=(id: number) =>{
     setCartItems((cartItems) => {
       if (cartItems.find((item:CartItemType) => item.id === id)?.quantity === 1) {
         return cartItems.filter((item) => item.id !== id);
@@ -88,7 +88,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     });
   }
 
-  function removeFromCart(id: number) {
+  const removeFromCart=(id: number) =>{
     if (cartItems.length - 1 === 0) {
       closeCart();
     }

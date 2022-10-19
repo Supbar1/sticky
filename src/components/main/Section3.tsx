@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import storeItems from "../../services/items.json";
 import Center from "../../common/Center";
 import EvenColumns from "../../common/EvenColumns";
-import Buttonx from "../../common/OrangeButtons";
+import Button from "../../common/OrangeButtons";
 import SpinningStick from "../../common/SpinningStick";
 
 const Heading = styled.h2`
@@ -29,7 +29,7 @@ const Section3 = () => (
     <Heading>
       Did you know that most sticks are made of wood? WOW!
       <Link to="login">
-        <Buttonx>Get Started</Buttonx>
+        <Button>Get Started</Button>
       </Link>
     </Heading>
     <SpinningStick />

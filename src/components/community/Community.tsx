@@ -57,15 +57,15 @@ const GetApiComments = () => {
   const [topics, setTopics] = useState<TopicType[]>([]);
   const [comments, setComments] = useState<CommentType[]>([]);
 
-  let numberOfTopicsDisplayed = 5,
-    numberOfCommentsDisplayed = numberOfTopicsDisplayed * 5;
+  const numberOfTopicsDisplayed = 5;
+  const numberOfCommentsDisplayed = numberOfTopicsDisplayed * 5;
 
-  const apiTopics = async () : Promise<any>=> {
+  const apiTopics = async (): Promise<any> => {
     const { data: topics } = await http.get(config.apiTopics);
     setTopics(topics.slice(0, numberOfTopicsDisplayed));
   };
 
-  const apiComments = async () : Promise<any>=> {
+  const apiComments = async (): Promise<any> => {
     const { data: comments } = await http.get(config.apiComments);
     setComments(comments.slice(0, numberOfCommentsDisplayed));
     for (let element of comments) {

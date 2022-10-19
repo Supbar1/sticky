@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Container = styled.form`
   width: max(300px, 40%);
 `;
-
 const AcceptPermission = styled.div`
   display: flex;
   align-items: flex-start;
@@ -36,13 +35,38 @@ const ButtonCentered = styled.div`
   justify-content: center;
 `;
 
+interface MessageType {
+  nameSurname?: string;
+  email?: string;
+  phone?: string;
+  company?: string;
+  userMessage?: string;
+}
+
+interface MessageProps {
+  doSubmit: () => void;
+  schema: any;
+  message: MessageType;
+  setMessage: React.Dispatch<React.SetStateAction<MessageType>>;
+  errors: MessageType;
+  setErrors: React.Dispatch<React.SetStateAction<MessageType>>;
+  nameSurname?: string;
+  nameSurnameErrors?: string;
+  email?: string;
+  emailErrors?: string;
+  phone?: string;
+  phoneErrors?: string;
+  company?: string;
+  companyErrors?: string;
+  userMessage?: string;
+  userMessageErrors?: string;
+}
 const MessageForm = ({
-  schema,
   message,
   setMessage,
-  Name_Surname,
+  nameSurname,
   nameSurnameErrors,
-  emailSchema,
+  email,
   emailErrors,
   phone,
   phoneErrors,
@@ -53,20 +77,20 @@ const MessageForm = ({
   errors,
   setErrors,
   doSubmit,
-}) => {
+  schema,
+}: MessageProps) => {
   const [agree, setAgree] = useState(true);
 
   const validate = () => {
     const result = schema.validate(message);
     if (!result.error) return null;
-    const validateErrors = {};
+    const validateErrors = {} as any;
     for (let item of result.error.details)
       validateErrors[item.path[0]] = item.message;
-
     return validateErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // function that prevents full page reload
     e.preventDefault();
     const submitErrors = validate();
@@ -75,24 +99,29 @@ const MessageForm = ({
     console.log(errors);
   };
 
-  function validateProperty({ name, value }) {
+  const validateProperty = ({
+    name,
+    value,
+  }: EventTarget & (HTMLInputElement | HTMLTextAreaElement)) => {
     //Computed Property Name in JavaScript
     const obj = { [name]: value };
     const rule = schema.extract(name);
     const propertySchema = Joi.object({ [name]: rule });
     const { error } = propertySchema.validate(obj);
     return error ? error.details[0].message : null;
-  }
+  };
 
-  const handleChange = ({ currentTarget: input }) => {
-    const validateErrors = { ...errors };
+  const handleChange = ({
+    currentTarget: input,
+  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const validateErrors: any = { ...errors };
     const errorMessage = validateProperty(input);
     if (errorMessage) {
       validateErrors[input.name] = errorMessage;
     } else {
       delete validateErrors[input.name];
     }
-    const newMessage = { ...message };
+    const newMessage: any = { ...message };
     newMessage[input.name] = input.value;
     setMessage(newMessage);
     setErrors(validateErrors);
@@ -103,8 +132,8 @@ const MessageForm = ({
     <>
       <Container onSubmit={handleSubmit}>
         <Input
-          name="Name_Surname"
-          value={Name_Surname}
+          name="nameSurname"
+          value={nameSurname}
           onChange={handleChange}
           type="text"
           error={nameSurnameErrors}
@@ -112,7 +141,7 @@ const MessageForm = ({
         />
         <Input
           name="email"
-          value={emailSchema}
+          value={email}
           onChange={handleChange}
           type="email"
           error={emailErrors}
@@ -137,6 +166,7 @@ const MessageForm = ({
         <Textarea
           name="userMessage"
           value={userMessage}
+          type="text"
           onChange={handleChange}
           error={userMessageErrors}
           placeholder="Your message*"
