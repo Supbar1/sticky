@@ -70,7 +70,7 @@ const Form = ({
     return validateErrors;
   };
 
-  const handleSubmit = (e:  React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     // function that prevents full page reload
     e.preventDefault();
     const submitErrors = validate();
@@ -88,7 +88,7 @@ const Form = ({
     const { error } = propertySchema.validate(obj);
     return error ? error.details[0].message : null;
   };
- 
+
   const handleChange = ({
     currentTarget: input,
   }: React.ChangeEvent<HTMLInputElement>) => {
