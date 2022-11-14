@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { SmallOrangeButton } from "../../common/OrangeButtons";
+import { SmallOrangeButton as OrangeButton } from "../../common/OrangeButtons";
+import { useShoppingContext } from "./../products/ShopContext";
 
 const Container = styled.div`
-  display: flex;
   align-items: center;
   text-align: left;
   width: 100%;
@@ -28,6 +28,7 @@ const UserIcon = styled.i`
 `;
 const NewComment = styled.form`
   display: flex;
+  align-items: center;
   margin: 2rem;
   width: 100%;
   @media (max-width: 60em) {
@@ -49,17 +50,20 @@ interface CommentFormProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
 }
 const CommentForm = ({ text, onSubmit, onChange }: CommentFormProps) => {
-  let isTextareaDisabled = text.length > 0;
+  const { isLoggedIn } = useShoppingContext();
+  let isTextareaDisabled = text.length > 0 && isLoggedIn;
   return (
-    <Container>
+    <Container
+      style={isLoggedIn === true ? { display: "flex" } : { display: "none" }}
+    >
       <UserName>
         <UserIcon className="fa-solid fa-circle-user" />
       </UserName>
       <NewComment onSubmit={onSubmit}>
         <Textarea value={text} onChange={onChange} />
-        <SmallOrangeButton isTextareaDisabled={!isTextareaDisabled}>
+        <OrangeButton isTextareaDisabled={!isTextareaDisabled}>
           Add comment
-        </SmallOrangeButton>
+        </OrangeButton>
       </NewComment>
     </Container>
   );

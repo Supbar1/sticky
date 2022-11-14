@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import ScrollToTop from "./ScrollToTop";
 
 const LinksList = styled.ul`
   display: flex;
@@ -23,11 +24,13 @@ const SingleLink = styled.li`
     cursor: pointer;
   }
 `;
+
 interface FooterLinksType {
   isMessageOpen: () => void;
 }
 const FooterLinks = ({ isMessageOpen }: FooterLinksType) => (
   <LinksList>
+ 
     <Link to="/">
       <SingleLink>Main</SingleLink>
     </Link>

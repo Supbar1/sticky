@@ -12,14 +12,12 @@ const Center = styled.div`
       cursor: pointer;
     }
   }
-  @media (max-width: 35em) {
-    margin: 1rem;
-  }
+
   #contact {
     border-bottom: 1px solid var(--clr-accent-500);
   }
 `;
-const Icons = styled.ul`
+const Icons = styled.div`
   display: flex;
   font-size: var(--fs-700);
   list-style: none;
@@ -34,19 +32,19 @@ const FooterIcons = () => (
   <Center>
     <Icons>
       <a href="https://www.facebook.com/">
-        <i className="fa-brands fa-facebook"></i>
+        <i className="fa-brands fa-facebook"/>
       </a>
       <a href="https://www.youtube.com/">
-        <i className="fa-brands fa-youtube"></i>
+        <i className="fa-brands fa-youtube"/>
       </a>
       <a href="https://www.twitter.com/">
-        <i className="fa-brands fa-twitter"></i>
+        <i className="fa-brands fa-twitter"/>
       </a>
       <a href="https://pl.pinterest.com/">
-        <i className="fa-brands fa-pinterest"></i>
+        <i className="fa-brands fa-pinterest"/>
       </a>
       <a href="https://www.instagram.com/">
-        <i className="fa-brands fa-instagram"></i>
+        <i className="fa-brands fa-instagram"/>
       </a>
     </Icons>
   </Center>

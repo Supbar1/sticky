@@ -20,18 +20,24 @@ interface ShoppingCardContext {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
+  isLoggedIn: boolean;
   cartItems: CartItemType[];
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  userName: string;
+  setUsername:React.Dispatch<React.SetStateAction<string>>
 }
 
 const ShoppingContext = createContext({} as ShoppingCardContext);
 
-export const useShoppingCart = () => {
+export const useShoppingContext = () => {
   return React.useContext(ShoppingContext);
 };
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userName, setUsername] = useState<string>("")
 
   const openCart = () => {
     setIsCartOpen(true);
@@ -41,27 +47,27 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     setIsCartOpen(false);
   };
 
-  const buyItems=()=> {
-    toast.info("Congratulations! You are Stick owner! :)");
+  const buyItems = () => {
     setCartItems([]);
-    closeCart();
-  }
+    setIsCartOpen(false);
+    toast.info("Congratulations! Delivery is coming to you :)");
+  };
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
     0
   );
 
-  const getItemQuantity=(id: number)=> {
+  const getItemQuantity = (id: number) => {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
-  }
+  };
 
-  const increaseCartQuantity=(id: number) =>{
+  const increaseCartQuantity = (id: number) => {
     setCartItems((cartItems) => {
-      if (cartItems.find((item:CartItemType) => item.id === id) == null) {
+      if (cartItems.find((item: CartItemType) => item.id === id) == null) {
         return [...cartItems, { id, quantity: 1 }];
       } else {
-        return cartItems.map((item:CartItemType) => {
+        return cartItems.map((item: CartItemType) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
@@ -70,14 +76,16 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         });
       }
     });
-  }
+  };
 
-  const decreaseCartQuantity=(id: number) =>{
+  const decreaseCartQuantity = (id: number) => {
     setCartItems((cartItems) => {
-      if (cartItems.find((item:CartItemType) => item.id === id)?.quantity === 1) {
+      if (
+        cartItems.find((item: CartItemType) => item.id === id)?.quantity === 1
+      ) {
         return cartItems.filter((item) => item.id !== id);
       } else {
-        return cartItems.map((item:CartItemType) => {
+        return cartItems.map((item: CartItemType) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity - 1 };
           } else {
@@ -86,16 +94,16 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         });
       }
     });
-  }
+  };
 
-  const removeFromCart=(id: number) =>{
+  const removeFromCart = (id: number) => {
     if (cartItems.length - 1 === 0) {
       closeCart();
     }
     setCartItems((cartItems) => {
       return cartItems.filter((item) => item.id !== id);
     });
-  }
+  };
 
   return (
     <ShoppingContext.Provider
@@ -109,11 +117,19 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         increaseCartQuantity,
         removeFromCart,
         buyItems,
+        setIsLoggedIn,
+        isLoggedIn,
+        userName,
+        setUsername
       }}
     >
       {children}
       <React.StrictMode>
-        <ShoppingCart isCartOpen={isCartOpen} cartItems={cartItems} />
+        <ShoppingCart
+          isCartOpen={isCartOpen}
+          cartItems={cartItems}
+          buyItems={buyItems}
+        />
       </React.StrictMode>
     </ShoppingContext.Provider>
   );

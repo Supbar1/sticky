@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.css";
+import ScrollToTop from "./components/navigation/footer/ScrollToTop";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
+  <React.Fragment>
+    <Router>
+    <ScrollToTop />
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    </Router>
+  </React.Fragment>,
   document.getElementById("root")
 );
+
+// <React.StrictMode>
+// </React.StrictMode>

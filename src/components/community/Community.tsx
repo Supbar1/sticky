@@ -13,6 +13,7 @@ const Container = styled.div`
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
+  overflow: hidden;
   @media (max-width: 60em) {
     flex-direction: column;
     font-size: var(fs--300);
@@ -27,6 +28,7 @@ const CommentsSection = styled.div`
   display: flex;
   flex-direction: column;
   font-size: var(--fs-body);
+  overflow: hidden;
   @media (max-width: 60em) {
     width: 100%;
     display: flex;

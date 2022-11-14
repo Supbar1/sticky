@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import ToggleButton from "./ToggleButton";
-import { useShoppingCart } from "../../products/ShopContext";
+import { useShoppingContext } from "../../products/ShopContext";
 
 const Container = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ interface PageTitleProps {
 }
 
 const PageTitle = ({ isMenuOpen }: PageTitleProps) => {
-  const { openCart, cartQuantity } = useShoppingCart();
+  const { openCart, cartQuantity } = useShoppingContext();
 
   return (
     <Container>

@@ -79,8 +79,9 @@ const MessageForm = ({
   doSubmit,
   schema,
 }: MessageProps) => {
-  const [agree, setAgree] = useState(true);
-
+  const [agree, setAgree] = useState<boolean>(true);
+  const Joi = require("joi");
+  
   const validate = () => {
     const result = schema.validate(message);
     if (!result.error) return null;
@@ -127,7 +128,6 @@ const MessageForm = ({
     setErrors(validateErrors);
   };
 
-  const Joi = require("joi");
   return (
     <>
       <Container onSubmit={handleSubmit}>
@@ -145,7 +145,7 @@ const MessageForm = ({
           onChange={handleChange}
           type="email"
           error={emailErrors}
-          placeholder="E-mail adress*"
+          placeholder="E-mail adress"
         />
         <Input
           name="phone"
@@ -153,7 +153,7 @@ const MessageForm = ({
           onChange={handleChange}
           type="text"
           error={phoneErrors}
-          placeholder="+48 Number"
+          placeholder="Phone number (optional)"
         />
         <Input
           name="company"
@@ -161,7 +161,7 @@ const MessageForm = ({
           onChange={handleChange}
           type="text"
           error={companyErrors}
-          placeholder="Name of company"
+          placeholder="Name of company (optional)"
         />
         <Textarea
           name="userMessage"
@@ -169,7 +169,7 @@ const MessageForm = ({
           type="text"
           onChange={handleChange}
           error={userMessageErrors}
-          placeholder="Your message*"
+          placeholder="Your message"
         />
         <AcceptPermission>
           <input type="checkbox" onChange={() => setAgree(!agree)} />I hereby

@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/login/Login";
 import ShoppingCartProvider from "./components/products/ShopContext";
 import Footer from "./components/navigation/footer/Footer";
+import ScrollToTop from "./components/navigation/footer/ScrollToTop";
 
 const Scroll = styled.div`
   height: 100vh;
@@ -29,52 +30,6 @@ const Scroll = styled.div`
   }
 `;
 
-// const fetchRandomData = async () => {
-//   return axios
-//     .get("https:/randomuser.me/api")
-//     .then(({ data }) => {
-//       const user = data.results.name;
-//       console.log(user);
-//       return data;
-//       // return JSON.stringify(data, null, 2);
-//       // return setRandomUserData(data);
-//     })
-//     .catch((error) => {
-//       console.log(error.message);
-//     });
-// };
-// const getFullUserName = (userInfo) => {
-//   const {
-//     name: { first, last },
-//   } = userInfo;
-//   console.log(first);
-//   return `${first} ${last}`;
-// };
-// const App = () => {
-//   const [randomUserData, setRandomUserData] = useState("");
-//   const [userInfos, setUserInfos] = useState([]);
-
-//   useEffect(() => {
-//     fetchRandomData().then((randomData) => {
-//       setRandomUserData(JSON.stringify(randomData, null, 2) || "No user Data");
-//       setUserInfos(randomData.results);
-//     });
-//   }, []);
-//   return (
-//     <React.Fragment>
-//       <pre>
-//         <button onClick={() => console.log(userInfos)}>
-//           Fetch random data
-//         </button>{" "}
-//         {userInfos.map((userInfo, index) => (
-//           <>
-//             <p key={index}>{getFullUserName(userInfo)}</p>
-//             <img src={userInfo.picture.thumbnail} alt="sorry" />
-//           </>
-//         ))}
-//       </pre>
-
-/* {randomUserData} */
 const App = () => (
   <React.Fragment>
     <ShoppingCartProvider>
@@ -82,11 +37,11 @@ const App = () => (
       <Scroll>
         <Navbar />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/" element={<Main />} />
-          <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/" element={<Main />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Scroll>

@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Input from "./Input";
-import Buttons from "./Buttons";
 import styled from "styled-components";
+import Buttons from "./Buttons";
+import { toast } from "react-toastify";
+import { useShoppingContext } from './../products/ShopContext';
 
 const ContentBox = styled.div`
   display: flex;
@@ -53,35 +56,39 @@ const Form = ({
   password,
   passwordErrors,
   account,
+  setAccount,
   schema,
   setErrors,
   errors,
-  setAccount,
 }: FormProps) => {
-  const Joi = require(`joi`);
+  const {setIsLoggedIn, setUsername} = useShoppingContext();
+  const Joi = require("joi");
 
   const validate = () => {
-    const result = Joi.validate(account, schema, { abortEarly: false });
+    const result = schema.validate(account);
     if (!result.error) return null;
     const validateErrors = {} as any;
     for (let item of result.error.details)
       validateErrors[item.path[0]] = item.message;
-
     return validateErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // function that prevents full page reload
     e.preventDefault();
     const submitErrors = validate();
     setErrors(submitErrors || {});
-    if (!errors) return;
+    if (submitErrors) return;
+    toast.info("You can edit forum now! :)");
+    setIsLoggedIn(true);
+    setUsername(username)
   };
 
   const validateProperty = ({
     name,
     value,
-  }: EventTarget & HTMLInputElement) => {
+  }: EventTarget & (HTMLInputElement | HTMLTextAreaElement)) => {
+    //Computed Property Name in JavaScript
     const obj = { [name]: value };
     const rule = schema.extract(name);
     const propertySchema = Joi.object({ [name]: rule });
@@ -91,7 +98,7 @@ const Form = ({
 
   const handleChange = ({
     currentTarget: input,
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const validateErrors: any = { ...errors };
     const errorMessage = validateProperty(input);
     if (errorMessage) {
@@ -99,10 +106,10 @@ const Form = ({
     } else {
       delete validateErrors[input.name];
     }
-    const newAccount: any = { ...account };
-    newAccount[input.name] = input.value;
+    const newMessage: any = { ...account };
+    newMessage[input.name] = input.value;
+    setAccount(newMessage);
     setErrors(validateErrors);
-    setAccount(newAccount);
   };
 
   return (

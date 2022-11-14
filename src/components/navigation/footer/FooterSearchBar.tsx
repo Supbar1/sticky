@@ -8,7 +8,7 @@ const Center = styled.div`
   justify-content: center;
   white-space: nowrap;
   @media (max-width: 35em) {
-    margin: 1rem;
+    /* margin: 1rem; */
   }
 `;
 const FooterSearchBarStyled = styled.div`
@@ -21,7 +21,7 @@ const Button = styled.button`
   border: 0;
   line-height: 1;
   border-radius: 100vmax;
-  padding: 1.25em 2.5em;
+  padding: 1.1em 2.2em;
   font-weight: var(--fw-bold);
   font-size: var(--fs-button);
   color: var(--clr-neutral-100);

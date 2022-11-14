@@ -4,12 +4,12 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
   @media (max-width: 35em) {
-    margin: 1rem;
+    margin: auto;
   }
 `;
 const Image = styled.img`
   @media (max-width: 60em) {
-    width: min(450px, 100%);
+    width: min(450px, 70vw);
   }
 `;
 const FooterImage = () => (

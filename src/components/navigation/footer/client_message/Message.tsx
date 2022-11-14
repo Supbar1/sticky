@@ -3,6 +3,8 @@ import styled from "styled-components";
 import CloseMark from "./CloseMark";
 import MessageForm from "./MessageForm";
 
+import { toast } from "react-toastify";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,30 +54,34 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
     "string.pattern.base": `Name and surname is to short.`,
   });
   const phoneSchema = Joi.string()
-    .regex(/^[0-9]{11}$/)
+    .regex(/^[0-9]{9}$/)
     .required()
+    .allow("")
     .messages({
-      "string.pattern.base": "Must contain 11 digits (with prefix)",
-    })
+      "string.pattern.base": "Must contain 9 digits",
+    });
   const emailSchema = Joi.string()
-  .required()
+    .required()
     .email({
       minDomainSegments: 2,
       tlds: { allow: ["com", "net", "pl"] },
-    })
-  const companySchema = Joi.string().min(3).max(30);
+    });
+  const companySchema = Joi.string().min(3).max(30).optional().allow("") ;
   const userMessageSchema = Joi.string().min(3).max(1000).required();
 
   const schema = Joi.object({
     nameSurname: nameSurnameSchema,
     email: emailSchema,
     phone: phoneSchema,
-    company: companySchema,
+    company: companySchema || null,
     userMessage: userMessageSchema,
   });
 
   const doSubmit = () => {
     console.log("Submited");
+    setIsMessageOpen(!isMessageOpen);
+
+    toast.info("Message send :)");
   };
 
   if (!isMessageOpen) return null;

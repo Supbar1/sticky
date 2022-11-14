@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useShoppingCart } from "./ShopContext";
+import { useShoppingContext } from "./ShopContext";
 import ShopItem from "./ShopItem";
 import storeItems from "../../services/items.json";
 
@@ -41,10 +41,9 @@ const ListItem = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 2rem 0;
 `;
 const AddToCardButton = styled.button`
-  margin: auto;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   border: 0;
   border-radius: 100vmax;
@@ -61,6 +60,7 @@ const AddToCardButton = styled.button`
 interface ShoppingCartProps {
   isCartOpen: boolean;
   cartItems: { id: number; quantity: number }[];
+  buyItems: () => void;
 }
 interface CartItemType {
   id: number;
@@ -68,10 +68,12 @@ interface CartItemType {
   price: number;
   imgUrl: string;
 }
-const ShoppingCart = ({ isCartOpen, cartItems }: ShoppingCartProps) => {
-  const { closeCart, getItemQuantity, buyItems } = useShoppingCart();
-
-  if (cartItems.length === 0) closeCart();
+const ShoppingCart = ({
+  isCartOpen,
+  cartItems,
+  buyItems,
+}: ShoppingCartProps) => {
+  const { closeCart, getItemQuantity } = useShoppingContext();
 
   if (isCartOpen === false) return null;
 
@@ -82,7 +84,7 @@ const ShoppingCart = ({ isCartOpen, cartItems }: ShoppingCartProps) => {
           Products <i className="fa-solid fa-xmark" onClick={closeCart}></i>
         </Header>
         <p>Reminder: You may need more stick's</p>
-        {storeItems.map((item:CartItemType) => (
+        {storeItems.map((item: CartItemType) => (
           <ListItem key={item.id}>
             {getItemQuantity(item.id) > 0 && (
               <ShopItem {...item} id={item.id} />

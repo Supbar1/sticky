@@ -12,44 +12,6 @@ const Container = styled.div`
   }
 `;
 
-const Links = styled.div`
-  display: flex;
-  div a {
-    display: block;
-    text-decoration: none;
-    color: var(--clr-accent-400);
-    padding: 1rem;
-  }
-  div:hover {
-    background-color: var(--clr-accent-100);
-  }
-  @media (max-width: 60em) {
-    display: none;
-    width: 100%;
-  }
-`;
-
-const LinksActive = styled.div`
-  display: flex;
-  div {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-  }
-  div a {
-    display: block;
-    text-decoration: none;
-    color: var(--clr-accent-400);
-    padding: 1rem;
-  }
-  div:hover {
-    background-color: var(--clr-accent-100);
-  }
-  @media (max-width: 60em) {
-    flex-direction: column;
-  }
-`;
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 

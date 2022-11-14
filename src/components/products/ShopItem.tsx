@@ -1,7 +1,7 @@
 import "../../style.css";
 import styled from "styled-components";
 import formatCurrency from "../../services/formatCurrency";
-import { useShoppingCart } from "./ShopContext";
+import { useShoppingContext } from "./ShopContext";
 
 const StickImages = styled.img`
   margin: auto;
@@ -53,7 +53,7 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
     decreaseCartQuantity,
     removeFromCart,
     increaseCartQuantity,
-  } = useShoppingCart();
+  } = useShoppingContext();
   let quantity = getItemQuantity(id);
   return (
     <>

@@ -27,13 +27,8 @@ const SmallButtonStyled = styled.button`
   font-size: var(--fs-button);
   color: var(--clr-neutral-100);
   background-color: var(--clr-accent-400);
-  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
   margin: 1rem;
-  @media (max-width: 60em) {
-    font-size: var(--fs-300);
-    margin: 0rem;
-    padding: 0.75em 1em;
-  }
+ 
 `;
 
 interface ButtonProps {
@@ -42,14 +37,13 @@ interface ButtonProps {
 
 const OrangeButton = ({ children }: ButtonProps) => (
   <ButtonStyled>{children}</ButtonStyled>
-  );
-  export default OrangeButton;
+);
+export default OrangeButton;
 
-  
 interface SmallButtonProps {
-    children: ReactNode;
-    isTextareaDisabled: boolean;
-  }
+  children: ReactNode;
+  isTextareaDisabled: boolean;
+}
 
 export const SmallOrangeButton = ({
   children,
@@ -59,4 +53,3 @@ export const SmallOrangeButton = ({
     {children}
   </SmallButtonStyled>
 );
-

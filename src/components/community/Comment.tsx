@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useShoppingContext } from "../products/ShopContext";
 
 const Container = styled.div`
   display: grid;
@@ -69,19 +70,24 @@ interface InputProps {
   key: number;
 }
 
-const Comment = ({ comment, handleUpdate, handleDelete }: InputProps) => (
-  <Container key={comment.id}>
-    <i className="fa-solid fa-circle-user"></i>
-    <User>
-      user:
-      <span>&nbsp; {comment.email}</span>
-    </User>
-    <Text>{comment.body}</Text>
-    <ButtonsBox>
-      <Button onClick={() => handleUpdate(comment)}>Update</Button>
-      <Button onClick={() => handleDelete(comment)}>Delete</Button>
-    </ButtonsBox>
-  </Container>
-);
+const Comment = ({ comment, handleUpdate, handleDelete }: InputProps) => {
+  const { isLoggedIn } = useShoppingContext();
+  return (
+    <Container key={comment.id}>
+      <i className="fa-solid fa-circle-user"></i>
+      <User>
+        user:
+        <span>&nbsp; {comment.email}</span>
+      </User>
+      <Text>{comment.body}</Text>
 
+      <ButtonsBox
+        style={isLoggedIn === true ? { display: "flex" } : { display: "none" }}
+      >
+        <Button onClick={() => handleUpdate(comment)}>Update</Button>
+        <Button onClick={() => handleDelete(comment)}>Delete</Button>
+      </ButtonsBox>
+    </Container>
+  );
+};
 export default Comment;

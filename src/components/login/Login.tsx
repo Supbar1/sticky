@@ -1,5 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import { useShoppingContext } from "../products/ShopContext";
 import Form from "./Form";
 import Image from "./Image";
 
@@ -8,14 +10,18 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
-interface LoginProps {
+interface AcountProps {
   username: string;
   password: string;
 }
 const Login = () => {
-  const [account, setAccount] = useState({} as LoginProps);
-  const [errors, setErrors] = useState({} as LoginProps);
   const Joi = require(`joi`);
+  const { setUsername} = useShoppingContext();
+  const [account, setAccount] = useState({
+    username: "",
+    password: "",
+  } as AcountProps);
+  const [errors, setErrors] = useState({} as AcountProps);
 
   const username = Joi.string().min(3).max(30).required().label("Username");
   const password = Joi.string().min(3).max(30).required().label("Password");
