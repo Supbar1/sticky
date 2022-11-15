@@ -11,7 +11,7 @@ const Center = styled.div`
 const FooterSearchBarStyled = styled.div`
   input {
     height: 2em;
-    margin-right: 0.5rem;
+    margin: 0 0.5rem;
   }
 `;
 const Button = styled.button`

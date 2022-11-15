@@ -95,8 +95,9 @@ const Buttons = () => (
       <span>Forget Password?</span>
       <Button>Sign in</Button>
     </InputBox>
-
-    <SocialMediaHeader>Login with social media</SocialMediaHeader>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <SocialMediaHeader>Login with social media</SocialMediaHeader>
+    </div>
     <SocialMediaList>
       <ListItem>
         <a href="https://www.facebook.com/">

@@ -21,6 +21,7 @@ const Heading = styled.h2`
     font-size: var(--fs-600);
     margin: 1rem;
     padding-block: var(--size-400);
+    /* max-width: 300px; */
   }
 `;
 
@@ -28,7 +29,9 @@ const Section3 = () => (
   <div style={{ width: "min(1000px, 100%)" }}>
     <EvenColumns>
       <Heading>
-        Did you know that most sticks are made of wood? WOW!
+        <div style={{ maxWidth: "570px" }}>
+          Did you know that most sticks are made of wood? WOW!
+        </div>
         <Link to="login">
           <Button>Get Started</Button>
         </Link>

@@ -10,6 +10,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 const List = styled.ul`
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   @media (max-width: 60em) {
@@ -42,19 +43,17 @@ interface ProductsType {
   imgUrl: string;
 }
 
-const Products = () =>  (
-  
+const Products = () => (
   <Container>
     <PageTitle>Products</PageTitle>
     <List>
       {storeItems.map((item: ProductsType) => (
-          <ListItem key={item.id}>
-            <ShopItem {...item} />
-          </ListItem>
-        ))}
-      </List>
-    </Container>
-    );
-
+        <ListItem key={item.id}>
+          <ShopItem {...item} />
+        </ListItem>
+      ))}
+    </List>
+  </Container>
+);
 
 export default Products;

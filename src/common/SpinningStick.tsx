@@ -15,16 +15,16 @@ const StickAnimation = styled.div`
   }
   @keyframes animate {
     0% {
-      transform: scale(0) translateY(0px) translateX(0px) rotate(0);
+      transform: scale(0) translateY(0px) translateX(-900px) rotate(0);
       opacity: 0.6;
     }
     96% {
-      transform: scale(0.96) translateY(-2800px) translateX(-245px)
+      transform: scale(0.96) translateY(-2800px) translateX(-345px)
         rotate(180deg);
       opacity: 0.2;
     }
     100% {
-      transform: scale(1) translateY(-2900px) translateX(-245px) rotate(290deg);
+      transform: scale(1) translateY(-2900px) translateX(-345px) rotate(290deg);
       opacity: 0;
     }
   }

@@ -7,10 +7,11 @@ const Container = styled.div`
   padding-block: var(--size-700);
   font-size: var(--fs-body);
   display: grid;
-  gap: 1vw;
+  gap: 2vw;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   @media (max-width: 60em) {
+    padding: 0;
     grid-auto-flow: row;
     grid-auto-columns: 1fr;
   }

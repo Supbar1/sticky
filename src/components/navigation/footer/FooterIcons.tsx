@@ -32,19 +32,19 @@ const FooterIcons = () => (
   <Center>
     <Icons>
       <a href="https://www.facebook.com/">
-        <i className="fa-brands fa-facebook"/>
+        <i className="fa-brands fa-facebook" />
       </a>
       <a href="https://www.youtube.com/">
-        <i className="fa-brands fa-youtube"/>
+        <i className="fa-brands fa-youtube" />
       </a>
       <a href="https://www.twitter.com/">
-        <i className="fa-brands fa-twitter"/>
+        <i className="fa-brands fa-twitter" />
       </a>
       <a href="https://pl.pinterest.com/">
-        <i className="fa-brands fa-pinterest"/>
+        <i className="fa-brands fa-pinterest" />
       </a>
       <a href="https://www.instagram.com/">
-        <i className="fa-brands fa-instagram"/>
+        <i className="fa-brands fa-instagram" />
       </a>
     </Icons>
   </Center>

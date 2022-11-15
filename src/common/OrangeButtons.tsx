@@ -14,6 +14,9 @@ const ButtonStyled = styled.button`
   background-color: var(--clr-accent-400);
   box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
   margin: 2rem;
+  :hover {
+    background-color: var(--clr-accent-300);
+  }
   @media (max-width: 60em) {
     margin: 1rem;
   }
@@ -28,7 +31,6 @@ const SmallButtonStyled = styled.button`
   color: var(--clr-neutral-100);
   background-color: var(--clr-accent-400);
   margin: 1rem;
- 
 `;
 
 interface ButtonProps {
@@ -36,7 +38,7 @@ interface ButtonProps {
 }
 
 const OrangeButton = ({ children }: ButtonProps) => (
-  <ButtonStyled >{children}</ButtonStyled>
+  <ButtonStyled>{children}</ButtonStyled>
 );
 export default OrangeButton;
 
@@ -53,5 +55,3 @@ export const SmallOrangeButton = ({
     {children}
   </SmallButtonStyled>
 );
-
-

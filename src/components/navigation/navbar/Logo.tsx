@@ -21,7 +21,7 @@ const Sticky = styled.h1`
     color: var(--clr-accent-400);
   }
   padding: 1rem;
-  font-size: 75px;
+  font-size: 65px;
   color: var(--clr-neutral-900);
   font-family: var(--ff-primary);
   font-weight: bold;

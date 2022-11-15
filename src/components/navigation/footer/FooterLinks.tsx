@@ -10,7 +10,6 @@ const LinksList = styled.div`
     text-decoration: none;
   }
   #contact {
-    margin-bottom: 1.2rem;
     border-bottom: 2px solid var(--clr-accent-500);
     padding: 0.8rem 1rem 0.2rem;
     color: var(--clr-accent-100);

@@ -42,9 +42,9 @@ type TopicsProps = {
 };
 const Topics = ({ topics, onPageChange }: TopicsProps) => (
   <Container>
-    <Heading>choose topic</Heading>
+    <Heading>Choose topic</Heading>
     {topics &&
-      topics.map((topic:SingleTopicType) => (
+      topics.map((topic: SingleTopicType) => (
         <Titles key={topic.id} onClick={() => onPageChange(topic)}>
           {topic.title}
         </Titles>

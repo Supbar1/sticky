@@ -5,10 +5,12 @@ const Heading2 = styled.h2`
   line-height: 1.6;
   font-weight: var(--fw-bold);
   padding-block: var(--size-700);
+  margin: 0 1rem;
   @media (max-width: 60em) {
     font-size: var(--fs-800);
     margin: 1rem;
     padding-block: var(--size-400);
+    padding-top: 0;
   }
 `;
 const Heading3 = styled.h3`

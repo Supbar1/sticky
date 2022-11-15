@@ -5,12 +5,12 @@ import storeItems from "../../services/items.json";
 import formatCurrency from "../../services/formatCurrency";
 
 const Container = styled.div`
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
   display: flex;
   justify-content: center;
   width: min(1310px, 98%);
-  margin-bottom: 1rem;
   .rec.rec-pagination {
+    margin-bottom: 1rem;
     justify-content: center;
   }
 
@@ -22,7 +22,8 @@ const Container = styled.div`
   button.rec-dot:hover,
   button.rec-dot:active,
   button.rec-dot:focus {
-    box-shadow: 0 0 1px 3px var(--clr-accent-400);
+    background-color: var(--clr-accent-500);
+    box-shadow: 0 0 1px 3px var(--clr-accent-200);
   }
   .rec.rec-arrow-left:hover:enabled,
   .rec.rec-arrow-right:hover:enabled {
@@ -77,7 +78,7 @@ const ShopCarousel = () => (
           <Item>
             <img src={item.imgUrl} alt="stick" />
           </Item>
-          <div>{item.name}</div>
+          <div style={{ fontWeight: "bold" }}>{item.name}</div>
           <div>{formatCurrency(item.price)}</div>
           <Link to="/products">
             <CarouselButton>Buy stick!</CarouselButton>
