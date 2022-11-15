@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useShoppingContext } from "../products/ShopContext";
 import Form from "./Form";
 import Image from "./Image";
+import LogOut from "./LogOut";
 
 const Container = styled.div`
   position: relative;
@@ -14,9 +15,10 @@ interface AcountProps {
   username: string;
   password: string;
 }
+
 const Login = () => {
   const Joi = require(`joi`);
-  const { setUsername} = useShoppingContext();
+  const { setUsername, userName } = useShoppingContext();
   const [account, setAccount] = useState({
     username: "",
     password: "",
@@ -34,17 +36,21 @@ const Login = () => {
   return (
     <Container>
       <Image />
-      <Form
-        account={account}
-        setAccount={setAccount}
-        errors={errors}
-        setErrors={setErrors}
-        schema={schema}
-        username={account.username}
-        usernameErrors={errors.username}
-        password={account.password}
-        passwordErrors={errors.password}
-      />
+      {userName ? (
+        <LogOut />
+      ) : (
+        <Form
+          account={account}
+          setAccount={setAccount}
+          errors={errors}
+          setErrors={setErrors}
+          schema={schema}
+          username={account.username}
+          usernameErrors={errors.username}
+          password={account.password}
+          passwordErrors={errors.password}
+        />
+      )}
     </Container>
   );
 };

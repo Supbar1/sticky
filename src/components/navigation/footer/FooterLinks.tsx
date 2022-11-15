@@ -1,27 +1,38 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ScrollToTop from "./ScrollToTop";
 
-const LinksList = styled.ul`
+const LinksList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   a {
+    display: block;
     text-decoration: none;
-    height: 60px;
   }
   #contact {
-    border-bottom: 1px solid var(--clr-accent-500);
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--clr-accent-500);
+    padding: 0.8rem 1rem 0.2rem;
+    color: var(--clr-accent-100);
+    :hover {
+      border-bottom: 2px solid var(--clr-accent-200);
+      padding-bottom: 0.8rem;
+
+      color: black;
+    }
   }
 `;
-const SingleLink = styled.li`
+const SingleLink = styled.div`
   list-style: none;
   text-decoration: none;
   color: var(--clr-accent-400);
-  margin: 1.4rem 0;
+  padding: 0.8rem 1.2rem;
+
   :hover {
-    color: var(--clr-neutral-100);
+    color: var(--clr-accent-500);
     cursor: pointer;
+    background-color: var(--clr-accent-200);
+    border-bottom: none;
   }
 `;
 
@@ -30,12 +41,11 @@ interface FooterLinksType {
 }
 const FooterLinks = ({ isMessageOpen }: FooterLinksType) => (
   <LinksList>
- 
     <Link to="/">
       <SingleLink>Main</SingleLink>
     </Link>
-    <Link to="/community">
-      <SingleLink>Community</SingleLink>
+    <Link to="/forum">
+      <SingleLink>Forum</SingleLink>
     </Link>
     <Link to="/products">
       <SingleLink>Products</SingleLink>

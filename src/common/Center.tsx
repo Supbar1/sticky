@@ -8,7 +8,6 @@ const Container = styled.div`
   justify-content: center;
   text-decoration: none;
   text-align: center;
-  margin: 2rem;
   a {
     text-decoration: none;
     color: var(--clr-accent-400);
@@ -25,8 +24,6 @@ interface CenterProps {
   children: ReactNode;
 }
 
-const Center = ({ children }: CenterProps) => (
-  <Container>{children}</Container>
-);
+const Center = ({ children }: CenterProps) => <Container>{children}</Container>;
 
 export default Center;

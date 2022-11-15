@@ -38,6 +38,10 @@ const AddToCardButton = styled.button`
   box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
   padding: 0.75em 1.5em;
   height: 40px;
+  margin-bottom: 2rem;
+  @media (max-width: 35rem) {
+    margin-bottom: 1rem;
+  }
 `;
 
 interface ShopItemProps {

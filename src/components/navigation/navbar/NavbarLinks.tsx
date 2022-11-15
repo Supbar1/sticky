@@ -66,7 +66,7 @@ const Links = () => {
         <Link to="/">Main</Link>
       </div>
       <div>
-        <Link to="/community">Community</Link>
+        <Link to="/forum">Forum</Link>
       </div>
       <div>
         <Link to="/products">Products</Link>

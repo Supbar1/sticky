@@ -5,8 +5,15 @@ import storeItems from "../../services/items.json";
 import formatCurrency from "../../services/formatCurrency";
 
 const Container = styled.div`
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
   width: min(1310px, 98%);
   margin-bottom: 1rem;
+  .rec.rec-pagination {
+    justify-content: center;
+  }
+
   button.rec-dot {
     background-color: var(--clr-accent-400);
     box-shadow: 0 0 1px 3px var(--clr-accent-300);

@@ -14,6 +14,7 @@ const Section1 = () => (
     </Center>
     <Center>
       <img
+        style={{ width: "90%" }}
         src="https://st2.depositphotos.com/1967477/5333/v/600/depositphotos_53335539-stock-illustration-tree-silhouette.jpg"
         alt="big stick"
       />

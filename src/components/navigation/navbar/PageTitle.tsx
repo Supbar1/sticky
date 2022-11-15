@@ -11,11 +11,7 @@ const Container = styled.div`
   align-items: center;
   font-size: var(--fs-700);
 `;
-const StickImage = styled.img`
-  @media (max-width: 60em) {
-    display: none;
-  }
-`;
+
 const ShoppingCart = styled.div`
   display: flex;
   align-items: center;
@@ -34,10 +30,6 @@ const PageTitle = ({ isMenuOpen }: PageTitleProps) => {
 
   return (
     <Container>
-      <StickImage
-        src="https://dictionary.cambridge.org/pl/images/thumb/stick_noun_002_35886.jpg?version=5.0.247"
-        alt="sorry for stick"
-      />
       <Logo />
       {cartQuantity > 0 && (
         <ShoppingCart onClick={openCart}>

@@ -71,9 +71,10 @@ interface InputProps {
 }
 
 const Comment = ({ comment, handleUpdate, handleDelete }: InputProps) => {
-  const { isLoggedIn } = useShoppingContext();
+  const { userName } = useShoppingContext();
   return (
     <Container key={comment.id}>
+   
       <i className="fa-solid fa-circle-user"></i>
       <User>
         user:
@@ -82,7 +83,7 @@ const Comment = ({ comment, handleUpdate, handleDelete }: InputProps) => {
       <Text>{comment.body}</Text>
 
       <ButtonsBox
-        style={isLoggedIn === true ? { display: "flex" } : { display: "none" }}
+        style={userName ? { display: "flex" } : { display: "none" }}
       >
         <Button onClick={() => handleUpdate(comment)}>Update</Button>
         <Button onClick={() => handleDelete(comment)}>Delete</Button>

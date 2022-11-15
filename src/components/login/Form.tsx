@@ -5,7 +5,7 @@ import Buttons from "./Buttons";
 import { toast } from "react-toastify";
 import { useShoppingContext } from './../products/ShopContext';
 
-const ContentBox = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -61,7 +61,7 @@ const Form = ({
   setErrors,
   errors,
 }: FormProps) => {
-  const {setIsLoggedIn, setUsername} = useShoppingContext();
+  const {setUsername} = useShoppingContext();
   const Joi = require("joi");
 
   const validate = () => {
@@ -80,7 +80,7 @@ const Form = ({
     setErrors(submitErrors || {});
     if (submitErrors) return;
     toast.info("You can edit forum now! :)");
-    setIsLoggedIn(true);
+  
     setUsername(username)
   };
 
@@ -113,7 +113,7 @@ const Form = ({
   };
 
   return (
-    <ContentBox>
+    <Container>
       <FormBox onSubmit={handleSubmit}>
         <LoginHeader>Login</LoginHeader>
         <Input
@@ -136,7 +136,7 @@ const Form = ({
         />
         <Buttons />
       </FormBox>
-    </ContentBox>
+    </Container>
   );
 };
 export default Form;

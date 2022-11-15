@@ -7,13 +7,11 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  @media (max-width: 35em) {
-    /* margin: 1rem; */
-  }
 `;
 const FooterSearchBarStyled = styled.div`
   input {
     height: 2em;
+    margin-right: 0.5rem;
   }
 `;
 const Button = styled.button`

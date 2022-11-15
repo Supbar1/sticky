@@ -36,7 +36,7 @@ interface ButtonProps {
 }
 
 const OrangeButton = ({ children }: ButtonProps) => (
-  <ButtonStyled>{children}</ButtonStyled>
+  <ButtonStyled >{children}</ButtonStyled>
 );
 export default OrangeButton;
 
@@ -53,3 +53,5 @@ export const SmallOrangeButton = ({
     {children}
   </SmallButtonStyled>
 );
+
+

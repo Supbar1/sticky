@@ -41,17 +41,20 @@ interface ProductsType {
   price: number;
   imgUrl: string;
 }
-const Products = () => (
+
+const Products = () =>  (
+  
   <Container>
     <PageTitle>Products</PageTitle>
     <List>
       {storeItems.map((item: ProductsType) => (
-        <ListItem key={item.id}>
-          <ShopItem {...item} />
-        </ListItem>
-      ))}
-    </List>
-  </Container>
-);
+          <ListItem key={item.id}>
+            <ShopItem {...item} />
+          </ListItem>
+        ))}
+      </List>
+    </Container>
+    );
+
 
 export default Products;

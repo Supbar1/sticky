@@ -20,11 +20,9 @@ interface ShoppingCardContext {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
-  isLoggedIn: boolean;
   cartItems: CartItemType[];
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   userName: string;
-  setUsername:React.Dispatch<React.SetStateAction<string>>
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ShoppingContext = createContext({} as ShoppingCardContext);
@@ -36,8 +34,7 @@ export const useShoppingContext = () => {
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [userName, setUsername] = useState<string>("")
+  const [userName, setUsername] = useState<string>("");
 
   const openCart = () => {
     setIsCartOpen(true);
@@ -50,7 +47,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const buyItems = () => {
     setCartItems([]);
     setIsCartOpen(false);
-    toast.info("Congratulations! Delivery is coming to you :)");
+    toast.info("Congratulations! You are stick owner :)");
   };
 
   const cartQuantity = cartItems.reduce(
@@ -106,32 +103,32 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   };
 
   return (
-    <ShoppingContext.Provider
-      value={{
-        openCart,
-        closeCart,
-        cartItems,
-        cartQuantity,
-        getItemQuantity,
-        decreaseCartQuantity,
-        increaseCartQuantity,
-        removeFromCart,
-        buyItems,
-        setIsLoggedIn,
-        isLoggedIn,
-        userName,
-        setUsername
-      }}
-    >
-      {children}
-      <React.StrictMode>
-        <ShoppingCart
-          isCartOpen={isCartOpen}
-          cartItems={cartItems}
-          buyItems={buyItems}
-        />
-      </React.StrictMode>
-    </ShoppingContext.Provider>
+  
+      <ShoppingContext.Provider
+        value={{
+          openCart,
+          closeCart,
+          cartItems,
+          cartQuantity,
+          getItemQuantity,
+          decreaseCartQuantity,
+          increaseCartQuantity,
+          removeFromCart,
+          buyItems,
+          userName,
+          setUsername,
+        }}
+      >
+        {children}
+        <React.StrictMode>
+          <ShoppingCart
+            isCartOpen={isCartOpen}
+            cartItems={cartItems}
+            buyItems={buyItems}
+          />
+        </React.StrictMode>
+      </ShoppingContext.Provider>
+  
   );
 };
 

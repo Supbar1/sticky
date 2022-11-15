@@ -50,18 +50,18 @@ interface CommentFormProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
 }
 const CommentForm = ({ text, onSubmit, onChange }: CommentFormProps) => {
-  const { isLoggedIn } = useShoppingContext();
-  let isTextareaDisabled = text.length > 0 && isLoggedIn;
+  const { userName } = useShoppingContext();
+  let isTextareaDisabled = text.length > 0 && userName;
   return (
     <Container
-      style={isLoggedIn === true ? { display: "flex" } : { display: "none" }}
+      style={userName ? { display: "flex" } : { display: "none" }}
     >
       <UserName>
         <UserIcon className="fa-solid fa-circle-user" />
       </UserName>
       <NewComment onSubmit={onSubmit}>
         <Textarea value={text} onChange={onChange} />
-        <OrangeButton isTextareaDisabled={!isTextareaDisabled}>
+        <OrangeButton  isTextareaDisabled={!isTextareaDisabled}>
           Add comment
         </OrangeButton>
       </NewComment>

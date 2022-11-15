@@ -6,9 +6,9 @@
   --clr-primary-400: hsl(228, 39%, 31%);
 
   --clr-accent-100: #ffefeb;
-  --clr-accent-200: #fdc7ba;
+  --clr-accent-200: hsl(12, 94%, 86%);
   --clr-accent-300: hsl(12, 88%, 75%);
-  --clr-accent-400: #f25f3a;
+  --clr-accent-400: hsl(12, 88%, 59%);
   --clr-accent-500: hsl(12, 60%, 45%);
 
   --ff-primary: "Be Vietnam Pro", sans-serif;

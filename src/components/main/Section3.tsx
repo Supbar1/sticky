@@ -25,19 +25,21 @@ const Heading = styled.h2`
 `;
 
 const Section3 = () => (
-  <EvenColumns>
-    <Heading>
-      Did you know that most sticks are made of wood? WOW!
-      <Link to="login">
-        <Button>Get Started</Button>
-      </Link>
-    </Heading>
-    <SpinningStick />
+  <div style={{ width: "min(1000px, 100%)" }}>
+    <EvenColumns>
+      <Heading>
+        Did you know that most sticks are made of wood? WOW!
+        <Link to="login">
+          <Button>Get Started</Button>
+        </Link>
+      </Heading>
+      <SpinningStick />
 
-    <Center>
-      <img alt="sorry for stick" src={storeItems[6].imgUrl} />
-    </Center>
-  </EvenColumns>
+      <Center>
+        <img alt="sorry for stick" src={storeItems[6].imgUrl} />
+      </Center>
+    </EvenColumns>
+  </div>
 );
 
 export default Section3;
