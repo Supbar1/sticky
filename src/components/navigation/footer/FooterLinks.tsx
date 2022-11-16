@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useShoppingContext } from "../../products/ShopContext";
 
 const LinksList = styled.div`
   display: flex;
@@ -13,10 +14,10 @@ const LinksList = styled.div`
     border-bottom: 2px solid var(--clr-accent-500);
     padding: 0.8rem 1rem 0.2rem;
     color: var(--clr-accent-100);
+    margin-bottom: 0.7rem;
+
     :hover {
       border-bottom: 2px solid var(--clr-accent-200);
-      padding-bottom: 0.8rem;
-
       color: black;
     }
   }
@@ -38,24 +39,26 @@ const SingleLink = styled.div`
 interface FooterLinksType {
   isMessageOpen: () => void;
 }
-const FooterLinks = ({ isMessageOpen }: FooterLinksType) => (
-  <LinksList>
-    <Link to="/">
-      <SingleLink>Main</SingleLink>
-    </Link>
-    <Link to="/forum">
-      <SingleLink>Forum</SingleLink>
-    </Link>
-    <Link to="/products">
-      <SingleLink>Products</SingleLink>
-    </Link>
-    <Link to="/login">
-      <SingleLink>Start Now</SingleLink>
-    </Link>
-    <SingleLink id="contact" onClick={isMessageOpen}>
-      Contact Us
-    </SingleLink>
-  </LinksList>
-);
-
+const FooterLinks = ({ isMessageOpen }: FooterLinksType) => {
+  const { setIsMenuOpen } = useShoppingContext();
+  return (
+    <LinksList>
+      <Link to="/">
+        <SingleLink onClick={() => setIsMenuOpen(false)}>Main</SingleLink>
+      </Link>
+      <Link to="/forum">
+        <SingleLink onClick={() => setIsMenuOpen(false)}>Forum</SingleLink>
+      </Link>
+      <Link to="/products">
+        <SingleLink onClick={() => setIsMenuOpen(false)}>Products</SingleLink>
+      </Link>
+      <Link to="/login">
+        <SingleLink onClick={() => setIsMenuOpen(false)}>Start Now</SingleLink>
+      </Link>
+      <SingleLink id="contact" onClick={isMessageOpen}>
+        Contact Us
+      </SingleLink>
+    </LinksList>
+  );
+};
 export default FooterLinks;

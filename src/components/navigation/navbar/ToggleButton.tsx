@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useShoppingContext } from "../../products/ShopContext";
 
 const Container = styled.div`
   display: none;
@@ -17,15 +18,15 @@ const Bar = styled.span`
   background-color: var(--clr-accent-400);
   border-radius: 10px;
 `;
-interface ToggleButtonProps {
-  click: () => void;
-}
-const ToggleButton = ({ click }: ToggleButtonProps) => (
-  <Container onClick={click}>
-    <Bar></Bar>
-    <Bar></Bar>
-    <Bar></Bar>
-  </Container>
-);
+const ToggleButton = () => {
+  const { isMenuOpen, setIsMenuOpen } = useShoppingContext();
+  return (
+    <Container onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <Bar></Bar>
+      <Bar></Bar>
+      <Bar></Bar>
+    </Container>
+  );
+};
 
 export default ToggleButton;

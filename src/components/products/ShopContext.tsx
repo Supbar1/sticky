@@ -23,6 +23,8 @@ interface ShoppingCardContext {
   cartItems: CartItemType[];
   userName: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ShoppingContext = createContext({} as ShoppingCardContext);
@@ -34,6 +36,7 @@ export const useShoppingContext = () => {
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userName, setUsername] = useState<string>("");
 
   const openCart = () => {
@@ -103,7 +106,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   };
 
   return (
-  
+    
       <ShoppingContext.Provider
         value={{
           openCart,
@@ -117,6 +120,8 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
           buyItems,
           userName,
           setUsername,
+          isMenuOpen,
+          setIsMenuOpen,
         }}
       >
         {children}

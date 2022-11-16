@@ -7,51 +7,71 @@ const ButtonStyled = styled.button`
   border: 0;
   line-height: 1;
   border-radius: 100vmax;
-  padding: 1.25em 2.5em;
   font-weight: var(--fw-bold);
-  font-size: var(--fs-button);
   color: var(--clr-neutral-100);
+  letter-spacing: 1px;
+  word-spacing: 2px;
   background-color: var(--clr-accent-400);
   box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
-  margin: 2rem;
+  white-space: nowrap;
+  padding: 1.25em 2.1em;
+  font-size: var(--fs-button);
   :hover {
     background-color: var(--clr-accent-300);
+    color: var(--clr-accent-500);
+    box-shadow: none;
   }
   @media (max-width: 60em) {
-    margin: 1rem;
+    padding: 1em 1.9em;
   }
-`;
-const SmallButtonStyled = styled.button`
-  cursor: pointer;
-  border: 0;
-  line-height: 1;
-  border-radius: 100vmax;
-  padding: 1em 2em;
+  /* padding: 1.25em 2.5em;
   font-size: var(--fs-button);
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-accent-400);
-  margin: 1rem;
+  margin: 2rem;
+  @media (max-width: 60em) {
+    margin: 1rem;
+  } */
 `;
 
 interface ButtonProps {
   children: ReactNode;
+  onClick?: () => void;
+  className?: string;
+  disabled?: boolean;
 }
 
-const OrangeButton = ({ children }: ButtonProps) => (
-  <ButtonStyled>{children}</ButtonStyled>
+const OrangeButton = ({ className, children, onClick }: ButtonProps) => (
+  <ButtonStyled className={className} onClick={onClick}>
+    {children}
+  </ButtonStyled>
 );
 export default OrangeButton;
 
-interface SmallButtonProps {
-  children: ReactNode;
-  isTextareaDisabled: boolean;
-}
-
+const SmallButtonStyled = styled(OrangeButton)`
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
+  font-size: var(--fs-400);
+  padding: 0.75em 1.5em;
+  letter-spacing: 0;
+  word-spacing: 0;
+  @media (max-width: 35rem) {
+    margin-bottom: 1rem;
+  }
+  :hover {
+    background-color: var(--clr-accent-300);
+    color: var(--clr-accent-500);
+  }
+`;
 export const SmallOrangeButton = ({
+  disabled,
+  className,
   children,
-  isTextareaDisabled,
-}: SmallButtonProps) => (
-  <SmallButtonStyled disabled={isTextareaDisabled}>
+  onClick,
+}: ButtonProps) => (
+  <SmallButtonStyled
+    disabled={disabled}
+    className={className}
+    onClick={onClick}
+  >
     {children}
   </SmallButtonStyled>
 );

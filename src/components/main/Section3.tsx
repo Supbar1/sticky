@@ -5,6 +5,7 @@ import Center from "../../common/Center";
 import EvenColumns from "../../common/EvenColumns";
 import Button from "../../common/OrangeButtons";
 import SpinningStick from "../../common/SpinningStick";
+import { useShoppingContext } from "../products/ShopContext";
 
 const Heading = styled.h2`
   display: flex;
@@ -25,15 +26,16 @@ const Heading = styled.h2`
   }
 `;
 
-const Section3 = () => (
-  <div style={{ width: "min(1000px, 100%)" }}>
+const Section3 = () => {
+  const { setIsMenuOpen } = useShoppingContext();
+  return (
     <EvenColumns>
       <Heading>
         <div style={{ maxWidth: "570px" }}>
           Did you know that most sticks are made of wood? WOW!
         </div>
         <Link to="login">
-          <Button>Get Started</Button>
+          <Button onClick={() => setIsMenuOpen(false)}>Get Started</Button>
         </Link>
       </Heading>
       <SpinningStick />
@@ -42,7 +44,6 @@ const Section3 = () => (
         <img alt="sorry for stick" src={storeItems[6].imgUrl} />
       </Center>
     </EvenColumns>
-  </div>
-);
-
+  );
+};
 export default Section3;

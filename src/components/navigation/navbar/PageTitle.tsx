@@ -21,11 +21,8 @@ const ShoppingCartIcon = styled.i`
   color: var(--clr-accent-400);
 `;
 
-interface PageTitleProps {
-  isMenuOpen: () => void;
-}
 
-const PageTitle = ({ isMenuOpen }: PageTitleProps) => {
+const PageTitle = () => {
   const { openCart, cartQuantity } = useShoppingContext();
 
   return (
@@ -37,7 +34,7 @@ const PageTitle = ({ isMenuOpen }: PageTitleProps) => {
           <ShoppingCartIcon className="fa-solid fa-cart-shopping"></ShoppingCartIcon>
         </ShoppingCart>
       )}
-      <ToggleButton click={isMenuOpen} />
+      <ToggleButton  />
     </Container>
   );
 };

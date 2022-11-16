@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
+import{ useState } from "react";
 import styled from "styled-components";
 import { useShoppingContext } from "../products/ShopContext";
 import Form from "./Form";
@@ -7,9 +6,13 @@ import Image from "./Image";
 import LogOut from "./LogOut";
 
 const Container = styled.div`
+  min-height: 85vh;
   position: relative;
   display: flex;
   justify-content: center;
+  @media (max-width: 60em) {
+    min-height: 58vh;
+  }
 `;
 interface AcountProps {
   username: string;
@@ -18,7 +21,7 @@ interface AcountProps {
 
 const Login = () => {
   const Joi = require(`joi`);
-  const { setUsername, userName } = useShoppingContext();
+  const {userName } = useShoppingContext();
   const [account, setAccount] = useState({
     username: "",
     password: "",

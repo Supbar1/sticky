@@ -4,6 +4,7 @@ import storeItems from "../../services/items.json";
 import ShopItem from "./ShopItem";
 
 const Container = styled.div`
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { useShoppingContext } from "./ShopContext";
 import ShopItem from "./ShopItem";
 import storeItems from "../../services/items.json";
+import OrangeButton from "./../../common/OrangeButtons";
 
 const Container = styled.div`
-  position: fixed;
   top: 0%;
   left: 0%;
   width: 100%;
@@ -13,7 +13,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-top: auto;
   margin-left: auto;
   position: fixed;
@@ -47,20 +46,9 @@ const ListItem = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-const AddToCardButton = styled.button`
+const BuyButton = styled(OrangeButton)`
   margin-top: 2rem;
   margin-bottom: 2rem;
-  border: 0;
-  border-radius: 100vmax;
-  font-weight: var(--fw-bold);
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-accent-400);
-  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
-  padding: 1.25em 3rem;
-  font-size: var(--fs-500);
-  :hover {
-    background-color: var(--clr-accent-300);
-  }
 `;
 interface ShoppingCartProps {
   isCartOpen: boolean;
@@ -96,7 +84,7 @@ const ShoppingCart = ({
             )}
           </ListItem>
         ))}
-        <AddToCardButton onClick={buyItems}>Buy Items</AddToCardButton>
+        <BuyButton onClick={buyItems}>Buy Items!</BuyButton>
       </ShopWindow>
     </Container>
   );

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import OrangeButton from "./../../../common/OrangeButtons";
 
 const Center = styled.div`
   display: flex;
@@ -11,20 +12,12 @@ const Center = styled.div`
 const FooterSearchBarStyled = styled.div`
   input {
     height: 2em;
-    margin: 0 0.5rem;
+    margin: 0 0.5rem 0 0.7rem;
   }
 `;
-const Button = styled.button`
-  cursor: pointer;
-  border: 0;
-  line-height: 1;
-  border-radius: 100vmax;
+const Button = styled(OrangeButton)`
   padding: 1.1em 2.2em;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-button);
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-accent-400);
-  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
+  margin-right: 0.7rem;
 `;
 
 const FooterSearchBar = () => (

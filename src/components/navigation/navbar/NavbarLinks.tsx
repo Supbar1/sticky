@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useShoppingContext } from "../../products/ShopContext";
 
 const LinksOnWideScreen = styled.div`
   display: flex;
@@ -39,24 +40,22 @@ const LinksOnNarrowScreen = styled.div`
   }
 `;
 
-interface NavbarLinksType {
-  isMenuOpen: boolean;
-}
-
-const NavbarLinks = ({ isMenuOpen }: NavbarLinksType) => (
-  <>
-    {isMenuOpen ? (
-      <LinksOnNarrowScreen>
-        <Links />
-      </LinksOnNarrowScreen>
-    ) : (
-      <LinksOnWideScreen>
-        <Links />
-      </LinksOnWideScreen>
-    )}
-  </>
-);
-
+const NavbarLinks = () => {
+  const { isMenuOpen } = useShoppingContext();
+  return (
+    <>
+      {isMenuOpen ? (
+        <LinksOnNarrowScreen>
+          <Links />
+        </LinksOnNarrowScreen>
+      ) : (
+        <LinksOnWideScreen>
+          <Links />
+        </LinksOnWideScreen>
+      )}
+    </>
+  );
+};
 export default NavbarLinks;
 
 const Links = () => {

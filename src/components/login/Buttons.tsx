@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import OrangeButton from "./../../common/OrangeButtons";
 
 const Remember = styled.div`
   font-weight: 300;
@@ -54,26 +55,13 @@ const ListItem = styled.li`
     color: var(--clr-accent-400);
   }
 `;
-const Button = styled.button`
-  cursor: pointer;
-  border: 0;
-  line-height: 1;
-  border-radius: 100vmax;
+const Button = styled(OrangeButton)`
   padding: 1.25em 2.5em;
   @media (max-width: 600px) {
     padding: 1em 1.75em;
   }
-  font-weight: var(--fw-bold);
-  color: var(--clr-neutral-100);
-  background-color: var(--clr-accent-400);
-  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500);
-  white-space: nowrap;
-
-  :hover,
-  :focus-visible {
-    background-color: var(--clr-accent-300);
-  }
 `;
+
 const SocialMediaHeader = styled.h4`
   color: var(--clr-primary-400);
   text-transform: uppercase;

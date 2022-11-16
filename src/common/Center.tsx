@@ -16,7 +16,6 @@ const Container = styled.div`
     color: var(--clr-neutral-100);
   }
   @media (max-width: 35em) {
-    /* margin: 1rem 0; */
   }
 `;
 

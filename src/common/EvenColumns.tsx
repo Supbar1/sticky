@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 
 const Container = styled.div`
   width: min(1310px, 100%);
-  /* width: 100vw; */
   padding-block: var(--size-700);
   font-size: var(--fs-body);
   display: grid;

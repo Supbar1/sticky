@@ -9,6 +9,7 @@ import CommentForm from "./CommentForm";
 import { useShoppingContext } from "../products/ShopContext";
 
 const Container = styled.div`
+  min-height: 90vh;
   margin: 5rem 0 1rem 0;
   display: flex;
   margin-inline: auto;

@@ -12,15 +12,11 @@ const Container = styled.div`
   }
 `;
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+const Navbar = () => (
+  <Container>
+    <PageTitle />
+    <NavbarLinks />
+  </Container>
+);
 
-  return (
-    <Container>
-      <PageTitle isMenuOpen={() => setIsMenuOpen(!isMenuOpen)} />
-          <NavbarLinks isMenuOpen={isMenuOpen}/>
-      
-          </Container>
-  );
-};
 export default Navbar;
