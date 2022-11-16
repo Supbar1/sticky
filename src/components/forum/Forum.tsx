@@ -13,6 +13,7 @@ const Container = styled.div`
   margin: 5rem 0 1rem 0;
   display: flex;
   margin-inline: auto;
+  border: 1px solid black;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
   overflow: hidden;
