@@ -13,6 +13,7 @@ const FooterSearchBarStyled = styled.div`
   input {
     height: 2em;
     margin: 0 0.5rem 0 0.7rem;
+    max-width: 150px;
   }
 `;
 const Button = styled(OrangeButton)`
