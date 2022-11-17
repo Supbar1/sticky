@@ -3,9 +3,9 @@ import styled from "styled-components";
 import http from "../../services/httpService";
 import config from "../../services/config.json";
 import ActualTopic from "./ActualTopic";
-import Comments from "./Comments";
 import Topics from "./Topics";
 import CommentForm from "./CommentForm";
+import Comment from "./Comment";
 import { useShoppingContext } from "../products/ShopContext";
 
 const Container = styled.div`
@@ -13,7 +13,6 @@ const Container = styled.div`
   margin: 5rem 0 1rem 0;
   display: flex;
   margin-inline: auto;
-  border: 1px solid black;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
   overflow: hidden;
@@ -43,7 +42,6 @@ const CommentsSection = styled.div`
     font-size: var(--fs-300);
   }
 `;
-
 interface TopicType {
   readonly userId: number;
   readonly id: number;
@@ -135,7 +133,7 @@ const Forum = () => {
     setActualComments(newPosts);
     setText("");
     const { data } = await http.post(config.apiComments, obj);
-    console.log(data);
+    return data;
   };
 
   return (
@@ -143,11 +141,15 @@ const Forum = () => {
       <Topics topics={topics} onPageChange={onPageChange} />
       <CommentsSection>
         <ActualTopic actualTopic={actualTopic} />
-        <Comments
-          actualTopicComments={actualTopicComments}
-          handleUpdate={handleUpdate}
-          handleDelete={handleDelete}
-        />
+        {actualTopicComments &&
+          actualTopicComments.map((comment: CommentType, index: number) => (
+            <Comment
+              key={index}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+              comment={comment}
+            />
+          ))}
         {actualTopic && (
           <CommentForm
             text={text}

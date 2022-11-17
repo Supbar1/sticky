@@ -17,9 +17,10 @@ const Container = styled.div`
 `;
 interface EvenColumnsProps {
   children: ReactNode;
+  className?: string;
 }
-const EvenColumns = ({ children }: EvenColumnsProps) => (
-  <Container>{children}</Container>
+const EvenColumns = ({ className, children }: EvenColumnsProps) => (
+  <Container className={className}>{children}</Container>
 );
 
 export default EvenColumns;

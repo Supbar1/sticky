@@ -24,12 +24,6 @@ const ButtonStyled = styled.button`
   @media (max-width: 60em) {
     padding: 1em 1.9em;
   }
-  /* padding: 1.25em 2.5em;
-  font-size: var(--fs-button);
-  margin: 2rem;
-  @media (max-width: 60em) {
-    margin: 1rem;
-  } */
 `;
 
 interface ButtonProps {
@@ -39,8 +33,8 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const OrangeButton = ({ className, children, onClick }: ButtonProps) => (
-  <ButtonStyled className={className} onClick={onClick}>
+const OrangeButton = ({ disabled, className, children, onClick }: ButtonProps) => (
+  <ButtonStyled disabled={disabled}className={className} onClick={onClick}>
     {children}
   </ButtonStyled>
 );

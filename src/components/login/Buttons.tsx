@@ -16,15 +16,12 @@ const InputBox = styled.div`
   font-weight: 300;
   letter-spacing: 1px;
   width: 100%;
+  transform: none;
   span {
     :hover {
       text-decoration: underline;
       cursor: pointer;
     }
-  }
-  p,
-  span {
-    transform: none;
   }
   p a {
     color: var(--clr-accent-400);

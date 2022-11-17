@@ -1,12 +1,10 @@
 import styled from "styled-components";
+import Center from "./../../../common/Center";
 
-const Container = styled.div`
-  height: 90%;
+const Container = styled(Center)`
+  height: 90vh;
   width: 100%;
   margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: var(--fs-body);
 `;
 const NotFound = () => {

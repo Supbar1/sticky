@@ -2,7 +2,7 @@ import{ useState } from "react";
 import styled from "styled-components";
 import { useShoppingContext } from "../products/ShopContext";
 import Form from "./Form";
-import Image from "./Image";
+import Image from "./HandImage";
 import LogOut from "./LogOut";
 
 const Container = styled.div`

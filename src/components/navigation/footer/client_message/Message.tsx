@@ -4,19 +4,18 @@ import CloseMark from "./CloseMark";
 import MessageForm from "./MessageForm";
 
 import { toast } from "react-toastify";
+import Center from "./../../../../common/Center";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Container = styled(Center)`
   background-color: var(--clr-neutral-100);
   color: var(--clr-neutral-900);
 `;
 const Header = styled.h2`
+  width: max(300px, 40%);
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  width: max(300px, 50%);
+
+  margin: 1rem 0;
   font-size: var(--fs-secondary-heading);
 `;
 
@@ -66,7 +65,7 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
       minDomainSegments: 2,
       tlds: { allow: ["com", "net", "pl"] },
     });
-  const companySchema = Joi.string().min(3).max(30).optional().allow("") ;
+  const companySchema = Joi.string().min(3).max(30).optional().allow("");
   const userMessageSchema = Joi.string().min(3).max(1000).required();
 
   const schema = Joi.object({
@@ -78,9 +77,7 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
   });
 
   const doSubmit = () => {
-    console.log("Submited");
     setIsMessageOpen(!isMessageOpen);
-
     toast.info("Message send :)");
   };
 

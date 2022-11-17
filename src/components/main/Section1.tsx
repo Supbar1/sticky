@@ -10,7 +10,7 @@ const Section1 = () => {
   return (
     <EvenColumns>
       <Center>
-        <Text heading2="Our passion are sticks!" heading3={""} />
+        <Text heading2="Our passion are sticks!" />
         <Link to="products">
           <Button onClick={() => setIsMenuOpen(false)}>Grab your stick!</Button>
         </Link>

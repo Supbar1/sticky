@@ -1,12 +1,11 @@
 import styled from "styled-components";
+import Center from "./../../common/Center";
 
-const Container = styled.div`
+const Container = styled(Center)`
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  margin-bottom: 2rem;
   @media (max-width: 60em) {
+    margin: 2rem;
     width: 100%;
     background-color: var(--clr-accent-200);
     color: var(--clr-neutral-900);
@@ -16,7 +15,9 @@ const Heading = styled.h2`
   padding: var(--size-500);
   font-size: var(--fs-primary-heading);
   font-weight: var(--fw-bold);
+  border-bottom: 4px solid var(--clr-accent-400);
   @media (max-width: 60em) {
+    border-bottom: none;
     padding: var(--size-400);
     font-size: var(--fs-800);
   }

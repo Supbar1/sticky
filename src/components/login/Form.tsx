@@ -1,16 +1,13 @@
-
 import Input from "./Input";
 import styled from "styled-components";
 import Buttons from "./Buttons";
 import { toast } from "react-toastify";
-import { useShoppingContext } from './../products/ShopContext';
+import { useShoppingContext } from "./../products/ShopContext";
+import Center from './../../common/Center';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+const Container = styled(Center)`
+  text-align: left;
   width: 50%;
-  justify-content: center;
-  align-items: center;
   @media (max-width: 60em) {
     width: 80%;
   }
@@ -61,7 +58,7 @@ const Form = ({
   setErrors,
   errors,
 }: FormProps) => {
-  const {setUsername} = useShoppingContext();
+  const { setUsername } = useShoppingContext();
   const Joi = require("joi");
 
   const validate = () => {
@@ -80,8 +77,8 @@ const Form = ({
     setErrors(submitErrors || {});
     if (submitErrors) return;
     toast.info("You can edit forum now! :)");
-  
-    setUsername(username)
+
+    setUsername(username);
   };
 
   const validateProperty = ({

@@ -3,14 +3,6 @@ import styled from "styled-components";
 const Container = styled.div`
   position: relative;
   width: 50%;
-  img {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
   @media (max-width: 60em) {
     width: 100%;
     position: absolute;
@@ -19,12 +11,21 @@ const Container = styled.div`
   }
 `;
 
+const HandWithSticksImage = styled.img`
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const Image = () => (
   <Container>
-    <img
+    <HandWithSticksImage
       src="https://www.woodtoolsanddeco.com/10220-large_default/set-of-200-wooden-sticks-square-40x40-mm-38-cm-length-birch-wood.jpg"
       alt="sorry for stick"
-    ></img>
+    />
   </Container>
 );
 export default Image;

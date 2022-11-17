@@ -1,17 +1,13 @@
 import styled from "styled-components";
 import { useShoppingContext } from "./../products/ShopContext";
 import OrangeButton from "./../../common/OrangeButtons";
+import Center from "./../../common/Center";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+const Container = styled(Center)`
   width: 50%;
-  height: min(350px, 80vh);
   font-size: var(--fs-700);
 `;
-const Heading2 = styled.h2`
+const Heading = styled.h2`
   font-size: var(--fs-primary-heading);
   line-height: 1.6;
   font-weight: var(--fw-bold);
@@ -32,7 +28,7 @@ const LogOut = () => {
   const { userName, setUsername } = useShoppingContext();
   return (
     <Container>
-      <Heading2>Welcome: </Heading2>
+      <Heading>Welcome: </Heading>
       {userName}
       <ButtonStyled onClick={() => setUsername("")}>Log out</ButtonStyled>
     </Container>

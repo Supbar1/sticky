@@ -25,8 +25,8 @@ const Heading3 = styled.h3`
   }
 `;
 interface TextProps {
-  heading2: string;
-  heading3: string;
+  heading2?: string;
+  heading3?: string;
 }
 const Text = ({ heading2, heading3 }: TextProps) => (
   <>

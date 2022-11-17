@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
   justify-content: center;
   text-align: center;
+  width: 100%;
   a {
     text-decoration: none;
   }

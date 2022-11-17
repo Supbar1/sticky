@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import OrangeButton from "../../common/OrangeButtons";
+import SmallOrangeButton from "../../common/OrangeButtons";
 import { useShoppingContext } from "../products/ShopContext";
 
 const Container = styled.div`
@@ -37,7 +37,7 @@ const Textarea = styled.textarea`
     height: 180px;
   }
 `;
-const AddCommentButton = styled(OrangeButton)`
+const AddCommentButton = styled(SmallOrangeButton)`
   font-size: var(--fs-400);
   padding: 0.75em 1.5em;
 `;
@@ -49,7 +49,7 @@ interface CommentFormProps {
 }
 const CommentForm = ({ text, onSubmit, onChange }: CommentFormProps) => {
   const { userName } = useShoppingContext();
-  let isTextareaDisabled = text.length > 0 && userName;
+  const isTextareaDisabled = text.length > 0;
   return (
     <Container style={userName ? { display: "flex" } : { display: "none" }}>
       <NewComment onSubmit={onSubmit}>

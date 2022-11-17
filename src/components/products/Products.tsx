@@ -2,13 +2,10 @@ import "../../style.css";
 import styled from "styled-components";
 import storeItems from "../../services/items.json";
 import ShopItem from "./ShopItem";
+import Center from "./../../common/Center";
 
-const Container = styled.div`
+const Container = styled(Center)`
   min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 const List = styled.ul`
   margin-top: 1.5rem;

@@ -5,20 +5,15 @@ import FooterIcons from "./FooterIcons";
 import FooterImage from "./FooterImage";
 import FooterLinks from "./FooterLinks";
 import FooterSearchBar from "./FooterSearchBar";
+import EvenColumns from "./../../../common/EvenColumns";
 
 const Container = styled.div`
   background-color: var(--clr-neutral-900);
   color: var(--clr-neutral-100);
 `;
-const EvenColumns = styled.div`
-  font-size: var(--fs-body);
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  @media (max-width: 60em) {
-    grid-auto-flow: row;
-    grid-auto-columns: 1fr;
-  }
+const Columns = styled(EvenColumns)`
+  padding-block: 0px;
+  width: 100%;
 `;
 const MessageOnBigScreen = styled.div`
   display: flex;
@@ -44,7 +39,7 @@ const Footer = () => {
         />
       </MessageOnBigScreen>
 
-      <EvenColumns>
+      <Columns>
         <FooterImage />
         <FooterLinks isMessageOpen={() => setIsMessageOpen(!isMessageOpen)} />
 
@@ -57,7 +52,7 @@ const Footer = () => {
 
         <FooterIcons />
         <FooterSearchBar />
-      </EvenColumns>
+      </Columns>
     </Container>
   );
 };

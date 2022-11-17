@@ -22,7 +22,6 @@ const Heading = styled.h2`
     font-size: var(--fs-600);
     margin: 1rem;
     padding-block: var(--size-400);
-    /* max-width: 300px; */
   }
 `;
 

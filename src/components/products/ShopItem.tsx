@@ -57,7 +57,7 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
   return (
     <>
       <StickImages src={imgUrl} alt="sorry for stick" />
-      <p style={{ margin: " 1rem 0" }}>
+      <p style={{ margin: " 1.5rem 0" }}>
         {name}&nbsp;{formatCurrency(price)}
       </p>
       <div style={{ height: "60px" }}>

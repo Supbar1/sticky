@@ -3,14 +3,9 @@ import Section1 from "./Section1";
 import Section2 from "./Section2";
 import Carousel from "./ShopCarousel";
 import Section3 from "./Section3";
-import SpinningStick from "../../common/SpinningStick";
+import Center from "./../../common/Center";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-inline: auto;
-  text-align: center;
+const Container = styled(Center)`
   width: 100%;
   font-family: var(--ff-body);
   height: 100%;
@@ -18,7 +13,7 @@ const Container = styled.div`
     width: min(1310px, 100%);
   }
 `;
-const SmallScreen = styled.div`
+const NarrowScreen = styled.div`
   display: none;
   @media (max-width: 60em) {
     display: inherit;
@@ -26,12 +21,11 @@ const SmallScreen = styled.div`
   }
 `;
 
-const BigScreen = styled.div`
+const WideScreen = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: hsl(12, 88%, 59%, 0.5);
-
   z-index: -1;
   @media (max-width: 60em) {
     display: none;
@@ -44,16 +38,16 @@ const Main = () => (
       <Section1 />
     </Container>
 
-    <BigScreen>
+    <WideScreen>
       <Section2 />
-    </BigScreen>
+    </WideScreen>
 
     <Container>
       <Section3 />
 
-      <SmallScreen>
+      <NarrowScreen>
         <Section2 />
-      </SmallScreen>
+      </NarrowScreen>
 
       <Carousel />
     </Container>

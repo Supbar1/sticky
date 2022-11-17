@@ -3,16 +3,14 @@ import { useShoppingContext } from "./ShopContext";
 import ShopItem from "./ShopItem";
 import storeItems from "../../services/items.json";
 import OrangeButton from "./../../common/OrangeButtons";
+import Center from "./../../common/Center";
 
-const Container = styled.div`
+const Container = styled(Center)`
   top: 0%;
   left: 0%;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: auto;
   margin-left: auto;
   position: fixed;

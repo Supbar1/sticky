@@ -8,21 +8,15 @@ const Container = styled.div`
   justify-content: center;
   text-decoration: none;
   text-align: center;
-  a {
-    text-decoration: none;
-    color: var(--clr-accent-400);
-  }
-  a :hover {
-    color: var(--clr-neutral-100);
-  }
-  @media (max-width: 35em) {
-  }
 `;
 
 interface CenterProps {
   children: ReactNode;
+  className?: string;
 }
 
-const Center = ({ children }: CenterProps) => <Container>{children}</Container>;
+const Center = ({ className, children }: CenterProps) => (
+  <Container className={className}>{children}</Container>
+);
 
 export default Center;
