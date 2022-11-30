@@ -79,7 +79,7 @@ const ShopCarousel = () => (
       {storeItems.map((item) => (
         <CarouselElement key={item.id}>
           <Item>
-            <img src={item.imgUrl} alt="stick" />
+            <img src={item.imgUrl} alt="wooden stick" />
           </Item>
           <div style={{ fontWeight: "bold" }}>{item.name}</div>
           <div>{formatCurrency(item.price)}</div>

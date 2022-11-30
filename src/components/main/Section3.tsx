@@ -40,7 +40,7 @@ const Section3 = () => {
       <SpinningStick />
 
       <Center>
-        <img alt="sorry for stick" src={storeItems[6].imgUrl} />
+        <img alt="wide stick" src={storeItems[6].imgUrl} />
       </Center>
     </EvenColumns>
   );

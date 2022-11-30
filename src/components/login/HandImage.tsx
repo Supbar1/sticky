@@ -24,7 +24,7 @@ const Image = () => (
   <Container>
     <HandWithSticksImage
       src="https://www.woodtoolsanddeco.com/10220-large_default/set-of-200-wooden-sticks-square-40x40-mm-38-cm-length-birch-wood.jpg"
-      alt="sorry for stick"
+      alt="hand with stick"
     />
   </Container>
 );

@@ -16,7 +16,7 @@ const FooterImage = () => (
   <Center>
     <Image
       src="https://thumbs.dreamstime.com/b/cinnamon-sticks-isolated-black-background-food-photo-114308714.jpg"
-      alt="sorry for stick"
+      alt="brown stick"
     />
   </Center>
 );
