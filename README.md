@@ -1,9 +1,9 @@
 Sticky
 
-Project of stick shop. Contains main page, shop, simple forum, and login.
-
 Build with React, TypeScript, Styled Components, Axios, Joi and react-router-dom.
 React Context used instead of Redux.
+
+Project of stick shop. Contains main page, shop, simple forum, and login.
 
 Created purely for studying (and fun). 
 
@@ -18,14 +18,10 @@ Installation:
 
 npm install
 
-To Run Test Suite:
-
-npm test
-
 To Start Server:
 
 npm start
 
 To Visit App:
 
-localhost:3000/ideas
+localhost:3000

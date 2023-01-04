@@ -69,17 +69,17 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
           <AmmountButtons>
             <AmmountButton
               onClick={() => decreaseCartQuantity(id)}
-              className="fa-solid fa-square-minus"
-            ></AmmountButton>
+              className="fa-solid fa-square-minus"/>
+            
             {quantity} in cart
             <AmmountButton
               onClick={() => increaseCartQuantity(id)}
               className="fa-solid fa-square-plus"
-            ></AmmountButton>
+            />
             <AmmountButton
               onClick={() => removeFromCart(id)}
               className="fa-solid fa-trash-can"
-            ></AmmountButton>
+           />
           </AmmountButtons>
         )}
       </div>
