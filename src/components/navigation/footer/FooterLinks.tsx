@@ -35,7 +35,7 @@ const SingleLink = styled.div`
     border-bottom: none;
   }
 `;
-
+const styles = { transform: `rotate(-1.5deg)` };
 interface FooterLinksType {
   isMessageOpen: () => void;
 }
@@ -55,7 +55,7 @@ const FooterLinks = ({ isMessageOpen }: FooterLinksType) => {
       <Link to="/login">
         <SingleLink onClick={() => setIsMenuOpen(false)}>Start Now</SingleLink>
       </Link>
-      <SingleLink id="contact" onClick={isMessageOpen}>
+      <SingleLink style={styles} id="contact" onClick={isMessageOpen}>
         Contact Us
       </SingleLink>
     </LinksList>

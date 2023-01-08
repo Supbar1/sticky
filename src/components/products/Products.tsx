@@ -6,6 +6,18 @@ import Center from "./../../common/Center";
 
 const Container = styled(Center)`
   min-height: 90vh;
+
+  animation: animate 0.7s ease-in;
+
+  @keyframes animate {
+    0% {
+      opacity: 0;
+      transform: scale(1) translateY(20px) translateX(0px) rotate(0);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 const List = styled.ul`
   margin-top: 1.5rem;

@@ -7,7 +7,13 @@ import Topics from "./Topics";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import { useShoppingContext } from "../products/ShopContext";
+import LazyStick from "./../../common/LazyStickAnimation";
 
+const Container2 = styled.div`
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+`;
 const Container = styled.div`
   min-height: 90vh;
   margin: 5rem 0 1rem 0;
@@ -15,7 +21,6 @@ const Container = styled.div`
   margin-inline: auto;
   width: min(1310px, 100%);
   font-family: var(--ff-body);
-  overflow: hidden;
   @media (max-width: 60em) {
     margin: 1rem 0;
     flex-direction: column;
@@ -137,30 +142,33 @@ const Forum = () => {
   };
 
   return (
-    <Container>
-      <Topics topics={topics} onPageChange={onPageChange} />
-      <CommentsSection>
-        <ActualTopic actualTopic={actualTopic} />
-        {actualTopicComments &&
-          actualTopicComments.map((comment: CommentType, index: number) => (
-            <Comment
-              key={index}
-              handleDelete={handleDelete}
-              handleUpdate={handleUpdate}
-              comment={comment}
+    <Container2>
+      <LazyStick />
+      <Container>
+        <Topics topics={topics} onPageChange={onPageChange} />
+        <CommentsSection>
+          <ActualTopic actualTopic={actualTopic} />
+          {actualTopicComments &&
+            actualTopicComments.map((comment: CommentType, index: number) => (
+              <Comment
+                key={index}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
+                comment={comment}
+              />
+            ))}
+          {actualTopic && (
+            <CommentForm
+              text={text}
+              onSubmit={onSubmit}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setText(e.target.value)
+              }
             />
-          ))}
-        {actualTopic && (
-          <CommentForm
-            text={text}
-            onSubmit={onSubmit}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setText(e.target.value)
-            }
-          />
-        )}
-      </CommentsSection>
-    </Container>
+          )}
+        </CommentsSection>
+      </Container>
+    </Container2>
   );
 };
 export default Forum;

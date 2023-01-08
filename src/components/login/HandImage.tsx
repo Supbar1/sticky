@@ -3,6 +3,20 @@ import styled from "styled-components";
 const Container = styled.div`
   position: relative;
   width: 50%;
+  animation: animate 1s ease-in;
+  @keyframes animate {
+    0% {
+      opacity: 0;
+      transform: scale(1) translateY(20px) translateX(0px) rotate(0);
+    }
+    60% {
+      opacity: 0;
+      transform: scale(1) translateY(20px) translateX(0px) rotate(0);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   @media (max-width: 60em) {
     width: 100%;
     position: absolute;

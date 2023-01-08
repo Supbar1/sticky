@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 const StickAnimation = styled.div`
+  /* border: 1px solid red; */
   position: absolute;
   height: 402px;
   background: url(https://media.istockphoto.com/id/527232683/photo/wooden-stick.jpg?s=612x612&w=0&k=20&c=bXYR6f5bSVv7TiEr0drNCM1gzKG719n4pSg7WNgurm4=);
   background-repeat: no-repeat;
   background-color: transparent;
   background-size: 306px 400px;
+  width: 300px;
   background-position: center;
   z-index: -2;
-  animation: animate 9s linear infinite;
+  animation: SpinningStickAnimation 9s linear infinite;
   @media (max-width: 1000px) {
     display: none;
   }
-  @keyframes animate {
+  @keyframes SpinningStickAnimation {
     0% {
       transform: scale(0) translateY(0px) translateX(-900px) rotate(0);
       opacity: 0.6;

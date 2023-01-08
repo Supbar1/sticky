@@ -5,6 +5,16 @@ import Center from "./../../common/Center";
 const Container = styled(Center)`
   width: 20%;
   justify-content: flex-start;
+  animation: animate 0.7s ease-in;
+  @keyframes animate {
+    0% {
+      opacity: 0;
+      transform: scale(1) translateY(20px) translateX(0px) rotate(0);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   @media (max-width: 60em) {
     width: 100%;
     display: flex;
@@ -33,12 +43,14 @@ const Titles = styled.div`
   width: 80%;
   letter-spacing: 0.5px;
   cursor: pointer;
+  border-top: 2px solid transparent;
   @media (max-width: 60em) {
     width: fit-content;
     margin: 1rem;
   }
   :hover {
     border-bottom: 2px solid var(--clr-accent-300);
+    border-top: 2px solid var(--clr-accent-300);
     font-weight: var(--fw-bold);
   }
 `;

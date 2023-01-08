@@ -3,11 +3,22 @@ import styled from "styled-components";
 import Buttons from "./Buttons";
 import { toast } from "react-toastify";
 import { useShoppingContext } from "./../products/ShopContext";
-import Center from './../../common/Center';
+import Center from "./../../common/Center";
 
 const Container = styled(Center)`
   text-align: left;
   width: 50%;
+  animation: animate 0.3s ease-in;
+
+  @keyframes animate {
+    0% {
+      opacity: 0;
+      transform: scale(1) translateY(20px) translateX(0px) rotate(0);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   @media (max-width: 60em) {
     width: 80%;
   }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import formatCurrency from "../../services/formatCurrency";
 import { useShoppingContext } from "./ShopContext";
 import OrangeButton from "../../common/OrangeButtons";
+import { useState } from "react";
 
 const StickImages = styled.img`
   margin: auto;
@@ -52,25 +53,43 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
     decreaseCartQuantity,
     removeFromCart,
     increaseCartQuantity,
+    // showCart,
   } = useShoppingContext();
   let quantity = getItemQuantity(id);
+  const sizes = ["", "S", "M", "L", "XL", "XXL"];
+  const [size, setSize] = useState("");
   return (
     <>
+      {/* <button onClick={showCart}>Button</button> */}
       <StickImages src={imgUrl} alt="big stick" />
       <p style={{ margin: " 1.5rem 0" }}>
         {name}&nbsp;{formatCurrency(price)}
+        <br />
+        Size:
+        <select
+          onChange={(e) => setSize(e.target.value)}
+          value={size}
+          style={{ border: "none" }}
+        >
+          {sizes.map((size: string) => (
+            <option key={size}>{size}</option>
+          ))}
+        </select>
       </p>
       <div style={{ height: "60px" }}>
         {quantity === 0 ? (
-          <AddToCardButton onClick={() => increaseCartQuantity(id)}>
+          <AddToCardButton
+            disabled={size === ""}
+            onClick={() => increaseCartQuantity(id)}
+          >
             Add to Card
           </AddToCardButton>
         ) : (
           <AmmountButtons>
             <AmmountButton
               onClick={() => decreaseCartQuantity(id)}
-              className="fa-solid fa-square-minus"/>
-            
+              className="fa-solid fa-square-minus"
+            />
             {quantity} in cart
             <AmmountButton
               onClick={() => increaseCartQuantity(id)}
@@ -79,7 +98,7 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
             <AmmountButton
               onClick={() => removeFromCart(id)}
               className="fa-solid fa-trash-can"
-           />
+            />
           </AmmountButtons>
         )}
       </div>

@@ -4,6 +4,7 @@ import Section2 from "./Section2";
 import Carousel from "./ShopCarousel";
 import Section3 from "./Section3";
 import Center from "./../../common/Center";
+import SpinningStick from "../../common/SpinningStick";
 
 const Container = styled(Center)`
   width: 100%;
@@ -44,11 +45,9 @@ const Main = () => (
 
     <Container>
       <Section3 />
-
       <NarrowScreen>
         <Section2 />
       </NarrowScreen>
-
       <Carousel />
     </Container>
   </>

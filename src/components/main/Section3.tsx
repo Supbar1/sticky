@@ -38,7 +38,6 @@ const Section3 = () => {
         </Link>
       </Heading>
       <SpinningStick />
-
       <Center>
         <img alt="wide stick" src={storeItems[6].imgUrl} />
       </Center>
