@@ -77,7 +77,7 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
   });
 
   const doSubmit = () => {
-    setIsMessageOpen(!isMessageOpen);
+    setIsMessageOpen(state=>!state);
     toast.info("Message send :)");
   };
 
@@ -87,7 +87,7 @@ const Message = ({ setIsMessageOpen, isMessageOpen }: MessageInterface) => {
     <Container>
       <Header>
         Contact us
-        <CloseMark openMenu={() => setIsMessageOpen(!isMessageOpen)} />
+        <CloseMark openMenu={() => setIsMessageOpen(state=>!state)} />
       </Header>
       <MessageForm
         doSubmit={doSubmit}

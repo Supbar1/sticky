@@ -39,6 +39,14 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userName, setUsername] = useState<string>("");
 
+function litres(time:number) {
+  const result = Math.round((time*0.5))
+    return result;
+}
+console.log(litres(3));
+
+
+
   const openCart = () => {
     setIsCartOpen(true);
   };

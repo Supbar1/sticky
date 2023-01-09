@@ -65,7 +65,7 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
       <p style={{ margin: " 1.5rem 0" }}>
         {name}&nbsp;{formatCurrency(price)}
         <br />
-        Size:
+        {/* Size:
         <select
           onChange={(e) => setSize(e.target.value)}
           value={size}
@@ -74,12 +74,12 @@ const ShopItem = ({ id, name, price, imgUrl }: ShopItemProps) => {
           {sizes.map((size: string) => (
             <option key={size}>{size}</option>
           ))}
-        </select>
+        </select> */}
       </p>
       <div style={{ height: "60px" }}>
         {quantity === 0 ? (
           <AddToCardButton
-            disabled={size === ""}
+            // disabled={size === ""}
             onClick={() => increaseCartQuantity(id)}
           >
             Add to Card

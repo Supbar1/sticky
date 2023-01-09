@@ -21,7 +21,7 @@ const Bar = styled.span`
 const ToggleButton = () => {
   const { isMenuOpen, setIsMenuOpen } = useShoppingContext();
   return (
-    <Container onClick={() => setIsMenuOpen(!isMenuOpen)}>
+    <Container onClick={() => setIsMenuOpen(state=>!state)}>
       <Bar></Bar>
       <Bar></Bar>
       <Bar></Bar>

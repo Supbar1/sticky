@@ -41,7 +41,7 @@ const Footer = () => {
 
       <Columns>
         <FooterImage />
-        <FooterLinks isMessageOpen={() => setIsMessageOpen(!isMessageOpen)} />
+        <FooterLinks isMessageOpen={() => setIsMessageOpen(state=>!state)} />
 
         <MessageOnSmallScreen>
           <Message

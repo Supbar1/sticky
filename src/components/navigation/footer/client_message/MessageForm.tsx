@@ -156,7 +156,7 @@ const MessageForm = ({
       />
 
       <AcceptPermission>
-        <input type="checkbox" onChange={() => setAgree(!agree)} />I hereby give
+        <input type="checkbox" onChange={() => setAgree(state=>!state)} />I hereby give
         consent for my personal data included in the application to be processed
         for the purposes of the recruitment process in accordance with Art. 6
         paragraph 1 letter a of the Regulation of the European Parliament and of
